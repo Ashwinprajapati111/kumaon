@@ -1,0 +1,74 @@
+{
+  "name": "kumaon",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@headlessui/react": "^2.2.9",
+    "@heroicons/react": "^2.2.0",
+    "@heroicons/vue": "^2.2.0",
+    "@material-tailwind/react": "^2.1.10",
+    "@react-google-maps/api": "^2.20.8",
+    "@reduxjs/toolkit": "^2.11.2",
+    "@sentry/react": "^10.43.0",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.13.6",
+    "clsx": "^2.1.1",
+    "file-saver": "^2.0.5",
+    "framer-motion": "^12.38.0",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.7",
+    "jwt-decode": "^4.0.0",
+    "lodash": "^4.17.23",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-grid-gallery": "^1.0.1",
+    "react-hot-toast": "^2.6.0",
+    "react-icons": "^5.6.0",
+    "react-image-gallery": "^2.0.8",
+    "react-masonry-css": "^1.0.16",
+    "react-redux": "^9.2.0",
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.30.3",
+    "react-scripts": "^5.0.1",
+    "react-toastify": "^11.0.5",
+    "recharts": "^3.8.0",
+    "tailwindcss": "^3.4.1",
+    "web-vitals": "^2.1.4",
+    "workbox-webpack-plugin": "^7.4.0",
+    "xlsx": "^0.18.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
+    "autoprefixer": "^10.4.27",
+    "eslint": "^8.57.1",
+    "eslint-config-react-app": "^7.0.1",
+    "postcss": "^8.5.8"
+  }
+}

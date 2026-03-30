@@ -1,0 +1,20 @@
+.topbg{
+    background-color: #111827;
+}
+.imgf{
+    width: 150px;
+    height: auto;
+}
+
+@media (max-width: 1025px), (max-width: 767px){
+    .imgf {
+        width: 52%; /* Image takes full width on small screens */
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.discc{
+    line-height: 61px!important;
+}

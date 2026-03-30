@@ -1,0 +1,864 @@
+[
+    {
+        "photogallery": [
+            {
+                "id": "1",
+                "name": "Organic Honey",
+                "year": 250,
+                "categoryId": 1,
+                "image": "/images/eventimages/18781 [Converted].jpg",
+                "photos": [
+                    "/images/eventimages/18781 [Converted].jpg",
+                    "/images/eventimages/4 X 6 banner gujarati.jpg",
+                    "/images/eventimages/Bhavesh_ID Card copy.jpg",
+                    "/images/eventimages/Bhavesh_ID Card.jpg",
+                    "/images/eventimages/amantran.jpg"
+                ]
+            },
+            {
+                "id": "2",
+                "name": "Wild Forest Honey",
+                "year": 300,
+                "categoryId": 1,
+                "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                "photos": [
+                    "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+                    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                    "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+                    "https://images.unsplash.com/photo-1470770841072-f978cf4d019e"
+                ]
+            },
+            {
+                "id": "3",
+                "name": "Wild Forest Honey",
+                "year": 300,
+                "categoryId": 1,
+                "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                "photos": []
+            },
+            {
+                "id": "4",
+                "name": "Wild Forest Honey",
+                "year": 300,
+                "categoryId": 1,
+                "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                "photos": []
+            }
+        ],
+        "Videogallery": [
+            {
+                "id": "v1",
+                "name": "Organic Honey Video",
+                "year": 250,
+                "categoryId": 1,
+                "image": "/images/eventimages/18781 [Converted].jpg",
+                "images": [
+                    "/images/eventimages/18781 [Converted].jpg",
+                    "/images/eventimages/4 X 6 banner gujarati.jpg",
+                    "/images/eventimages/Bhavesh_ID Card copy.jpg",
+                    "/images/eventimages/Bhavesh_ID Card.jpg",
+                    "/images/eventimages/amantran.jpg"
+                ]
+            },
+            {
+                "id": "v2",
+                "name": "Wild Forest Honey Video",
+                "year": 300,
+                "categoryId": 1,
+                "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                "imagesar": [
+                    "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+                    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                    "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+                    "https://images.unsplash.com/photo-1470770841072-f978cf4d019e"
+                ]
+            },
+            {
+                "id": "v3",
+                "name": "Wild Forest Honey Video",
+                "year": 300,
+                "categoryId": 1,
+                "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                "images": []
+            },
+            {
+                "id": "v4",
+                "name": "Wild Forest Honey Video",
+                "year": 300,
+                "categoryId": 1,
+                "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                "images": []
+            }
+        ],
+        "sortOption": [
+            {
+                "id": 5000,
+                "name": "Most Popular",
+                "href": "#",
+                "current": true
+            },
+            {
+                "id": 5001,
+                "name": "Photos",
+                "href": "/Eventsphoto",
+                "current": true
+            },
+            {
+                "id": 5002,
+                "name": "Videos",
+                "href": "/Eventsvideo",
+                "current": true
+            }
+        ],
+        "products": [
+            {
+                "id": 51,
+                "name": "Hemp Seed Oil",
+                "desc": "Hand-Plucked Himalayan Harvest",
+                "price": "250000",
+                "text1_title": "Properties",
+                "text1_desc": "From Data Rich in vitamins, minerals, anti-oxidants and enzymes, its boosts overall immunity and helps prevent various diseases. Made exclusively by Apis Cerana Indica bees from java plum (jamun) flowers, this honey is sustainably sourced from remote Himalayan villages.",
+                "text2_title": "Ingredients",
+                "text2_desc": "Ingredients - 100% raw, unpasteurised honey. Kumaon Organics Raw Java Plum Honey is a rare, single-region, small-batch honey harvested from the nectar of wild jamun (Syzygium cumini) blossoms in the Himalayan foothills. Naturally darker and richer, jamun honey is known to contain higher levels of polyphenols, flavonoids and anthocyanins—potent antioxidants that help combat oxidative stress and support metabolic health. Its low glycaemic tendency and natural antimicrobial and anti-inflammatory properties make it especially valued for gut health, throat comfort and overall immune support. Rich in prebiotic sugars, it helps nourish beneficial gut bacteria while offering a deep, earthy flavour profile. Enjoy it in warm water, as a natural sweetener, or straight off the spoon—an intentional, functional indulgence for everyday wellness.",
+                "text3_title": "Single-Origin • Himalayan Wild Flora",
+                "text3_desc": "Made from Jamun blossoms — limited seasonal bloom Never heated, filtered or processed Naturally dark, mineral-rich & low glycemic Prebiotic  nzymes support digestion & microbiome health Contains iron, magnesium & naturally occurring micronutrients",
+                "text4_title": "Taste Notes",
+                "text4_desc": "(Real Jamun Blossom Signature Profile), Smooth, Slightly Tangy, Not Too Sweet, Taste the Himalayas — one spoon at a time.",
+                "product_image": "../images/Hemp Seed Oil/01.jpg",
+                "product_images": [
+                    {
+                        "id": 1,
+                        "name": "Angled view",
+                        "src": "../images/Hemp Seed Oil/01.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 2,
+                        "name": "Angled view",
+                        "src": "../images/Hemp Seed Oil/02.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 3,
+                        "name": "Angled view",
+                        "src": "../images/Hemp Seed Oil/03.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 4,
+                        "name": "Angled view",
+                        "src": "../images/Hemp Seed Oil/04.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 5,
+                        "name": "Angled view",
+                        "src": "../images/Hemp Seed Oil/05.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 6,
+                        "name": "Angled view",
+                        "src": "../images/Hemp Seed Oil/06.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    }
+                ],
+                "productbg-image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                "why_title": "Why this is not just another dark honey?",
+                "why_desc": "What makes Kumaon Organics Raw Java Plum (Jamun) Honey stand out.",
+                "why": [
+                    {
+                        "text": "Jamun (Java Plum) nectar = naturally higher antioxidant density",
+                        "des": "Dark, monofloral honeys consistently show higher total phenolic and flavonoid content than lighter, multi-floral honeys—resulting in stronger antioxidant activity. Jamun (Syzygium cumini) flowers are naturally rich in anthocyanins, phenolic acids, and flavonoids, compounds well known for their role in antioxidant defence and metabolic support. Harvested during the Jamun flowering season in the Kumaon Himalayas, our Raw Java Plum Honey carries botanical richness directly from flower to jar—without dilution or blending."
+                    },
+                    {
+                        "text": "Wild Jamun trees, not cultivated monocultures",
+                        "des": "Most commercial dark honeys are sourced from plantation-style crops or agricultural belts, often exposed to higher pesticide and chemical inputs. Jamun trees in the Kumaon region grow wild in forested landscapes, far from intensive farming and chemical agriculture. Research shows that bees foraging in forested, low-intensity ecosystems produce hive products with lower pesticide residue risk compared to heavily cultivated or urban areas. Our honey reflects this cleaner, more biodiverse Himalayan environment—pure, unindustrialised and closer to nature."
+                    },
+                    {
+                        "text": "True monofloral, single-region, small-batch",
+                        "des": "Many so-called “Jamun honeys” on the market are : ● Heavily blended with other nectars, ● Heavily blended with other nectars, ● Ultra-filtered, removing pollen markers and delicate enzymes. Kumaon Organics Raw Java Plum Honey is: ● Sourced from Himalayan region ● Harvested in small seasonal batches ● Raw and gently strained, never overheated or ultra-filtered. This preserves its distinctive deep colour, complex aroma, mild bitterness, and bioactive compounds—the true sensory and functional signature of Jamun honey."
+                    },
+                    {
+                        "text": "Ethical, seasonal and ecosystem-first",
+                        "des": " Seasonal & limited  harvested only when Jamun trees naturally bloom, ● Farm-to-jar sourcing  supporting local Kumaoni beekeepers, ● Forest-friendly beekeeping protecting wild Jamun trees and pollinator habitats. Slow-crafted at altitude, Raw Java Plum Honey is a functional gourmet honey—ideal for mindful daily use, metabolic balance and antioxidant support. Ethically sourced. Botanically specific. Science-aligned. This is Jamun honey in its most authentic form."
+                    }
+                ],
+                "faq": [
+                    {
+                        "question": "Why is Java Plum (Jamun) honey more watery than other honey?",
+                        "answer": "Java plum honey is naturally lighter and more fluid because jamun nectar has a higher natural moisture content. Being raw and unprocessed, the honey is not artificially thickened or dehydrated, so its natural flow is retained."
+                    },
+                    {
+                        "question": "Does watery honey mean it is adulterated?",
+                        "answer": "No. Texture alone does not indicate purity. Many raw forest and monofloral honeys are naturally runny. Artificially thick honey may actually be processed or blended."
+                    },
+                    {
+                        "question": "Why does the taste feel slightly strong or astringent??",
+                        "answer": "Java plum honey has a distinctive natural flavour profile that may include mild bitterness or astringency. This is a normal characteristic of jamun nectar and forest-origin honey."
+                    },
+                    {
+                        "question": "Will this honey crystallize?",
+                        "answer": "WJava plum honey typically crystallizes slowly or not at all due to its natural sugar composition. Lack of crystallization does not mean the honey is impure."
+                    },
+                    {
+                        "question": "WIs Java Plum honey suitable for daily use?",
+                        "answer": "Yes, it can be enjoyed as part of a balanced diet, like any natural sweetener."
+                    },
+                    {
+                        "question": "Is this honey safe for children?",
+                        "answer": "Honey should not be given to infants below 1 year of age.For others, it may be consumed in moderation."
+                    },
+                    {
+                        "question": "Why does the colour vary from batch to batch?",
+                        "answer": "Natural factors such as season, region, climate and floral availability can cause variations in colour and taste. These variations indicate authenticity, not inconsistency."
+                    },
+                    {
+                        "question": "Is this honey heated or chemically treated?",
+                        "answer": "No. This honey is raw and unheated, with no added sugars, syrups or chemicals. Natural variations in texture, color and taste are expected."
+                    },
+                    {
+                        "question": "How should Java Plum honey be stored?",
+                        "answer": "Store in a cool, dry place, away from direct sunlight. Keep it moisture free and always use a dry spoon."
+                    },
+                    {
+                        "question": "What type of bees collect this honey?",
+                        "answer": "This honey is collected by native Indian honeybees such as Apis cerana and/or Apis dorsata, depending on the harvest region and season."
+                    },
+                    {
+                        "question": "Why does it smell different from regular honey?",
+                        "answer": "Java plum honey has a deep, earthy aroma, typical of forest and jamun blossom nectar. This aroma is natural and varies with each harvest."
+                    }
+                ],
+                "disclaimer": "This product is a natural fermented food. Variations in colour, taste, clarity are natural. "
+            },
+            {
+                "id": 52,
+                "name": "Organic Blacktea",
+                "desc": "Hand-Plucked Himalayan Harvest.",
+                "price": "250000",
+                "text1_title": "Properties",
+                "text1_desc": "Kumaon Organics Black Tea is a finely crafted, small-batch tea sourced from high-altitude tea gardens (6000+ feet) in the Kumaon region of Uttarakhand, where crisp mountain air, mineral-rich soil and slow leaf development create depth and character in every cup. Hand-plucked from carefully selected tea bushes, the leaves are naturally withered and fully oxidised using traditional methods that enhance flavour while preserving the tea’s inherent strength and polyphenols.Unlike mass-produced black teas that rely on dust or aggressive processing, our whole-leaf black tea delivers a clean, smooth brew—bold yet balanced, never harsh. The full oxidation develops a rich body, natural warmth and a caffeine lift, making it an ideal everyday tea for focus, energy and grounding. With malty undertones, subtle sweetness and a lingering finish, Kumaon Organics Black Tea captures the robust elegance of the Himalayas—pure, refined and deeply satisfying.",
+                "text2_title": "Ingredients",
+                "text2_desc": "whole leaf black tea leaves ",
+                "text3_title": "Origin",
+                "text3_desc": "Kumaon Himalayas, india ",
+                "text4_title": "Taste Notes",
+                "text4_desc": "Smooth • Malty • Cocoa Aroma • Rich Finish",
+                "product_image": "../images/Organic Blacktea/01.jpg",
+                "product_images": [
+                    {
+                        "id": 1,
+                        "name": "Angled view",
+                        "src": "../images/Organic Blacktea/01.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 2,
+                        "name": "Angled view",
+                        "src": "../images/Organic Blacktea/02.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 3,
+                        "name": "Angled view",
+                        "src": "../images/Organic Blacktea/03.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 4,
+                        "name": "Angled view",
+                        "src": "../images/Organic Blacktea/04.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 5,
+                        "name": "Angled view",
+                        "src": "../images/Organic Blacktea/05.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 6,
+                        "name": "Angled view",
+                        "src": "../images/Organic Blacktea/06.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 7,
+                        "name": "Angled view",
+                        "src": "../images/Organic Blacktea/07.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 8,
+                        "name": "Angled view",
+                        "src": "../images/Organic Blacktea/08.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    }
+                ],
+                "productbg_image": "../images/Organic Blacktea/Blacktea.jpg",
+                "why_title": "Why this is not just a Black Tea?",
+                "why_desc": "What makes Kumaon Organics Raw Java Plum (Jamun) Honey stand out.",
+                "why": [
+                    {
+                        "text": "Why It’s Special",
+                        "des": "Handpicked leaves from Himalayan high-altitude gardens ●     Whole leaf, sun-dried & fermented — no dust, no bitterness ●    Pure, chemical-free, premium-grade leaves ●     Grown at 6, 000+ ft elevation for richer flavor & stronger antioxidants ●   Slow fermented for full-bodied taste & richer antioxidants ●    Naturally aromatic, clean and pesticide-free Kumaon-grown tea leaves are uniquely rich in polyphenols because of the high altitude, slow growth and Himalayan soil  inerals. This creates a cup that is bold, smooth, naturally sweet and chemically superior."
+                    },
+                    {
+                        "text": "Kumaon Grown Black Tea ",
+                        "des": "High-altitude Kumaon tea estates create a slow-maturing leaf, which results in: ●   Higher polyphenol & theaflavin content formed during careful oxidation ●    Balanced natural caffeine for energy without harshness ●    Lower acidity compared to low-land black teas ● Deeper body with smooth malty, honeyed notes ●  Better digestibility The cool Himalayan climate and traditional oxidation develop complexity without bitterness, making Kumaon black tea chemically richer and sensorially more refined than mass-produced Assam teas, heavily processed commercial blends & other low-land teas. A slow-sip luxury tea, not a mass-market brew."
+                    },
+                    {
+                        "text": "Rich in Theaflavins & Catechins — Powerful Antioxidants",
+                        "des": "Black tea’s signature antioxidants: ●   Reduce oxidative stress ●   Support cellular repair ●   Slow signs of aging Kumaon-grown leaves have more flavonoid density due to cold-climate stress. Excellent for skin, immunity and long-term wellness."
+                    },
+                    {
+                        "text": "Boosts Energy, Focus & Mental Clarity",
+                        "des": " Contains: ●    Moderate caffeine for alertness ●   L-theanine, a natural relaxing amino acid Together they create:Calm focus, sharper productivity and stable energy — without jitters. For students, professionals and caffeine-sensitive drinkers."
+                    },
+                    {
+                        "text": "Supports Weight Management & Fat Metabolism",
+                        "des": "Research shows black tea helps: ●    Improve fat breakdown (lipolysis) ● Reduce fat storage enzymes ●    Improve metabolism. The perfect natural alternative to sugary beverages."
+                    },
+                    {
+                        "text": "Supports Heart & Metabolic Health",
+                        "des": "Theaflavins in black tea may: ● Reduce LDL (bad cholesterol) ●  Improve circulation ●   Balance blood pressure Kumaon’s mineral-rich soil adds trace elements like magnesium and manganese that further support cardiovascular function."
+                    },
+                    {
+                        "text": "Natural Digestive & Gut Support",
+                        "des": "Black tea tannins and polyphenols: ●    Support healthy gut bacteria ●  Improve digestion ● Reduce bloating and acidity over time. Ideal for wellness-focused consumers."
+                    },
+                    {
+                        "text": "Brewing Guide",
+                        "des": "●   Use 1 teaspoon of black tea per 200 ml water ●  Bring water to a boil ● Steep time: 3–5 minutes – proper heat unlocks its depth, aroma and polyphenols  ithout bitterness. ●    With milk (optional): Brew the tea first in water, then add warm milk to taste. ●   Whole-leaf black tea can be re-brewed 1–2 times, producing a smoother second cup. "
+                    },
+                    {
+                        "text": "What You Can Add for Wellness & Flavor",
+                        "des": "Lemon — brightens flavour and supports antioxidant absorption ● Raw honey — natural sweetness + throat-soothing comfort ● Cinnamon, clove, star anise, spices — gentle metabolism support & warming notes ● Fresh mint leaves — refreshing and digestive support ● Ginger or tulsi — immune and digestion-friendly pairing "
+                    },
+                    {
+                        "text": "Best Time to Drink",
+                        "des": "Morning or early afternoon — for sustained energy, focus and grounding warmth without a heavy crash. "
+                    }
+                ],
+                
+                "faq": [
+                    {
+                        "question": "Supports Weight Management & Fat Metabolism",
+                        "answer": "Research shows black tea helps: ●    Improve fat breakdown (lipolysis) ● Reduce fat storage enzymes ●    Improve metabolism. The perfect natural alternative to sugary beverages."
+                    },
+                    {
+                        "question": "Does watery honey mean it is adulterated?",
+                        "answer": "No. Texture alone does not indicate purity. Many raw forest and monofloral honeys are naturally runny. Artificially thick honey may actually be processed or blended."
+                    },
+                    {
+                        "question": "Why does the taste feel slightly strong or astringent??",
+                        "answer": "Java plum honey has a distinctive natural flavour profile that may include mild bitterness or astringency. This is a normal characteristic of jamun nectar and forest-origin honey."
+                    },
+                    {
+                        "question": "Will this honey crystallize?",
+                        "answer": "WJava plum honey typically crystallizes slowly or not at all due to its natural sugar composition. Lack of crystallization does not mean the honey is impure."
+                    },
+                    {
+                        "question": "WIs Java Plum honey suitable for daily use?",
+                        "answer": "Yes, it can be enjoyed as part of a balanced diet, like any natural sweetener."
+                    },
+                    {
+                        "question": "Is this honey safe for children?",
+                        "answer": "Honey should not be given to infants below 1 year of age.For others, it may be consumed in moderation."
+                    },
+                    {
+                        "question": "Why does the colour vary from batch to batch?",
+                        "answer": "Natural factors such as season, region, climate and floral availability can cause variations in colour and taste. These variations indicate authenticity, not inconsistency."
+                    },
+                    {
+                        "question": "Is this honey heated or chemically treated?",
+                        "answer": "No. This honey is raw and unheated, with no added sugars, syrups or chemicals. Natural variations in texture, color and taste are expected."
+                    },
+                    {
+                        "question": "How should Java Plum honey be stored?",
+                        "answer": "Store in a cool, dry place, away from direct sunlight. Keep it moisture free and always use a dry spoon."
+                    },
+                    {
+                        "question": "What type of bees collect this honey?",
+                        "answer": "This honey is collected by native Indian honeybees such as Apis cerana and/or Apis dorsata, depending on the harvest region and season."
+                    },
+                    {
+                        "question": "Why does it smell different from regular honey?",
+                        "answer": "Java plum honey has a deep, earthy aroma, typical of forest and jamun blossom nectar. This aroma is natural and varies with each harvest."
+                    }
+                ],
+                "disclaimer": "This product is a natural fermented food. Variations in colour, taste, clarity are natural. "
+            },
+            {
+                "id": 53,
+                "name": "Organic Mountain Honey",
+                "desc": "Our Raw Organic Java Plum honey is unfiltered and unpasteurised, preserving its natural anti-bacterial, anti-viral, anti-inflammatory and anti-fungal.",
+                "price": "250000",
+                "text1_title": "Properties",
+                "text1_desc": "Rich in vitamins, minerals, anti-oxidants and enzymes, its boosts overall immunity and helps prevent various diseases. Made exclusively by Apis Cerana Indica bees from java plum (jamun) flowers, this honey is sustainably sourced from remote Himalayan villages.",
+                "text2_title": "Ingredients",
+                "text2_desc": "Ingredients - 100% raw, unpasteurised honey. Kumaon Organics Raw Java Plum Honey is a rare, single-region, small-batch honey harvested from the nectar of wild jamun (Syzygium cumini) blossoms in the Himalayan foothills. Naturally darker and richer, jamun honey is known to contain higher levels of polyphenols, flavonoids and anthocyanins—potent antioxidants that help combat oxidative stress and support metabolic health. Its low glycaemic tendency and natural antimicrobial and anti-inflammatory properties make it especially valued for gut health, throat comfort and overall immune support. Rich in prebiotic sugars, it helps nourish beneficial gut bacteria while offering a deep, earthy flavour profile. Enjoy it in warm water, as a natural sweetener, or straight off the spoon—an intentional, functional indulgence for everyday wellness.",
+                "text3_title": "Single-Origin • Himalayan Wild Flora",
+                "text3_desc": "Made from Jamun blossoms — limited seasonal bloom Never heated, filtered or processed Naturally dark, mineral-rich & low glycemic Prebiotic  nzymes support digestion & microbiome health Contains iron, magnesium & naturally occurring micronutrients",
+                "text4_title": "Taste Notes",
+                "text4_desc": "(Real Jamun Blossom Signature Profile), Smooth, Slightly Tangy, Not Too Sweet, Taste the Himalayas — one spoon at a time.",
+                "product_image": "../images/Organic Mountain Honey/01.jpg",
+                "product_images": [
+                    {
+                        "id": 1,
+                        "name": "Angled view",
+                        "src": "../images/Organic Mountain Honey/01.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 2,
+                        "name": "Angled view",
+                        "src": "../images/Organic Mountain Honey/02.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 3,
+                        "name": "Angled view",
+                        "src": "../images/Organic Mountain Honey/03.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    }
+                ],
+                "productbg-image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                "why_title": "Why this is not just another dark honey?",
+                "why_desc": "What makes Kumaon Organics Raw Java Plum (Jamun) Honey stand out.",
+                "why": [
+                    {
+                        "text": "Jamun (Java Plum) nectar = naturally higher antioxidant density",
+                        "des": "Dark, monofloral honeys consistently show higher total phenolic and flavonoid content than lighter, multi-floral honeys—resulting in stronger antioxidant activity. Jamun (Syzygium cumini) flowers are naturally rich in anthocyanins, phenolic acids, and flavonoids, compounds well known for their role in antioxidant defence and metabolic support. Harvested during the Jamun flowering season in the Kumaon Himalayas, our Raw Java Plum Honey carries botanical richness directly from flower to jar—without dilution or blending."
+                    },
+                    {
+                        "text": "Wild Jamun trees, not cultivated monocultures",
+                        "des": "Most commercial dark honeys are sourced from plantation-style crops or agricultural belts, often exposed to higher pesticide and chemical inputs. Jamun trees in the Kumaon region grow wild in forested landscapes, far from intensive farming and chemical agriculture. Research shows that bees foraging in forested, low-intensity ecosystems produce hive products with lower pesticide residue risk compared to heavily cultivated or urban areas. Our honey reflects this cleaner, more biodiverse Himalayan environment—pure, unindustrialised and closer to nature."
+                    },
+                    {
+                        "text": "True monofloral, single-region, small-batch",
+                        "des": "Many so-called “Jamun honeys” on the market are : ● Heavily blended with other nectars, ● Heavily blended with other nectars, ● Ultra-filtered, removing pollen markers and delicate enzymes. Kumaon Organics Raw Java Plum Honey is: ● Sourced from Himalayan region ● Harvested in small seasonal batches ● Raw and gently strained, never overheated or ultra-filtered. This preserves its distinctive deep colour, complex aroma, mild bitterness, and bioactive compounds—the true sensory and functional signature of Jamun honey."
+                    },
+                    {
+                        "text": "Ethical, seasonal and ecosystem-first",
+                        "des": " Seasonal & limited  harvested only when Jamun trees naturally bloom, ● Farm-to-jar sourcing  supporting local Kumaoni beekeepers, ● Forest-friendly beekeeping protecting wild Jamun trees and pollinator habitats. Slow-crafted at altitude, Raw Java Plum Honey is a functional gourmet honey—ideal for mindful daily use, metabolic balance and antioxidant support. Ethically sourced. Botanically specific. Science-aligned. This is Jamun honey in its most authentic form."
+                    }
+                ],
+                "faq": [
+                    {
+                        "question": "Why is Java Plum (Jamun) honey more watery than other honey?",
+                        "answer": "Java plum honey is naturally lighter and more fluid because jamun nectar has a higher natural moisture content. Being raw and unprocessed, the honey is not artificially thickened or dehydrated, so its natural flow is retained."
+                    },
+                    {
+                        "question": "Does watery honey mean it is adulterated?",
+                        "answer": "No. Texture alone does not indicate purity. Many raw forest and monofloral honeys are naturally runny. Artificially thick honey may actually be processed or blended."
+                    },
+                    {
+                        "question": "Why does the taste feel slightly strong or astringent??",
+                        "answer": "Java plum honey has a distinctive natural flavour profile that may include mild bitterness or astringency. This is a normal characteristic of jamun nectar and forest-origin honey."
+                    },
+                    {
+                        "question": "Will this honey crystallize?",
+                        "answer": "WJava plum honey typically crystallizes slowly or not at all due to its natural sugar composition. Lack of crystallization does not mean the honey is impure."
+                    },
+                    {
+                        "question": "WIs Java Plum honey suitable for daily use?",
+                        "answer": "Yes, it can be enjoyed as part of a balanced diet, like any natural sweetener."
+                    },
+                    {
+                        "question": "Is this honey safe for children?",
+                        "answer": "Honey should not be given to infants below 1 year of age.For others, it may be consumed in moderation."
+                    },
+                    {
+                        "question": "Why does the colour vary from batch to batch?",
+                        "answer": "Natural factors such as season, region, climate and floral availability can cause variations in colour and taste. These variations indicate authenticity, not inconsistency."
+                    },
+                    {
+                        "question": "Is this honey heated or chemically treated?",
+                        "answer": "No. This honey is raw and unheated, with no added sugars, syrups or chemicals. Natural variations in texture, color and taste are expected."
+                    },
+                    {
+                        "question": "How should Java Plum honey be stored?",
+                        "answer": "Store in a cool, dry place, away from direct sunlight. Keep it moisture free and always use a dry spoon."
+                    },
+                    {
+                        "question": "What type of bees collect this honey?",
+                        "answer": "This honey is collected by native Indian honeybees such as Apis cerana and/or Apis dorsata, depending on the harvest region and season."
+                    },
+                    {
+                        "question": "Why does it smell different from regular honey?",
+                        "answer": "Java plum honey has a deep, earthy aroma, typical of forest and jamun blossom nectar. This aroma is natural and varies with each harvest."
+                    }
+                ],
+                "disclaimer": "This product is a natural fermented food. Variations in colour, taste, clarity are natural. "
+            },
+            {
+                "id": 54,
+                "name": "Organic Whitetea",
+                "desc": "Our Raw Organic Java Plum honey is unfiltered and unpasteurised, preserving its natural anti-bacterial, anti-viral, anti-inflammatory and anti-fungal.",
+                "price": "250000",
+                "text1_title": "Properties",
+                "text1_desc": "Rich in vitamins, minerals, anti-oxidants and enzymes, its boosts overall immunity and helps prevent various diseases. Made exclusively by Apis Cerana Indica bees from java plum (jamun) flowers, this honey is sustainably sourced from remote Himalayan villages.",
+                "text2_title": "Ingredients",
+                "text2_desc": "Ingredients - 100% raw, unpasteurised honey. Kumaon Organics Raw Java Plum Honey is a rare, single-region, small-batch honey harvested from the nectar of wild jamun (Syzygium cumini) blossoms in the Himalayan foothills. Naturally darker and richer, jamun honey is known to contain higher levels of polyphenols, flavonoids and anthocyanins—potent antioxidants that help combat oxidative stress and support metabolic health. Its low glycaemic tendency and natural antimicrobial and anti-inflammatory properties make it especially valued for gut health, throat comfort and overall immune support. Rich in prebiotic sugars, it helps nourish beneficial gut bacteria while offering a deep, earthy flavour profile. Enjoy it in warm water, as a natural sweetener, or straight off the spoon—an intentional, functional indulgence for everyday wellness.",
+                "text3_title": "Single-Origin • Himalayan Wild Flora",
+                "text3_desc": "Made from Jamun blossoms — limited seasonal bloom Never heated, filtered or processed Naturally dark, mineral-rich & low glycemic Prebiotic  nzymes support digestion & microbiome health Contains iron, magnesium & naturally occurring micronutrients",
+                "text4_title": "Taste Notes",
+                "text4_desc": "(Real Jamun Blossom Signature Profile), Smooth, Slightly Tangy, Not Too Sweet, Taste the Himalayas — one spoon at a time.",
+                "product_image": "../images/Organic Whitetea/01.jpg",
+                "product_images": [
+                    {
+                        "id": 1,
+                        "name": "Angled view",
+                        "src": "../images/Organic Whitetea/01.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 2,
+                        "name": "Angled view",
+                        "src": "../images/Organic Whitetea/02.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 3,
+                        "name": "Angled view",
+                        "src": "../images/Organic Whitetea/03.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 4,
+                        "name": "Angled view",
+                        "src": "../images/Organic Whitetea/04.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    }
+                ],
+                "productbg-image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                "why_title": "Why this is not just another dark honey?",
+                "why_desc": "What makes Kumaon Organics Raw Java Plum (Jamun) Honey stand out.",
+                "why": [
+                    {
+                        "text": "Jamun (Java Plum) nectar = naturally higher antioxidant density",
+                        "des": "Dark, monofloral honeys consistently show higher total phenolic and flavonoid content than lighter, multi-floral honeys—resulting in stronger antioxidant activity. Jamun (Syzygium cumini) flowers are naturally rich in anthocyanins, phenolic acids, and flavonoids, compounds well known for their role in antioxidant defence and metabolic support. Harvested during the Jamun flowering season in the Kumaon Himalayas, our Raw Java Plum Honey carries botanical richness directly from flower to jar—without dilution or blending."
+                    },
+                    {
+                        "text": "Wild Jamun trees, not cultivated monocultures",
+                        "des": "Most commercial dark honeys are sourced from plantation-style crops or agricultural belts, often exposed to higher pesticide and chemical inputs. Jamun trees in the Kumaon region grow wild in forested landscapes, far from intensive farming and chemical agriculture. Research shows that bees foraging in forested, low-intensity ecosystems produce hive products with lower pesticide residue risk compared to heavily cultivated or urban areas. Our honey reflects this cleaner, more biodiverse Himalayan environment—pure, unindustrialised and closer to nature."
+                    },
+                    {
+                        "text": "True monofloral, single-region, small-batch",
+                        "des": "Many so-called “Jamun honeys” on the market are : ● Heavily blended with other nectars, ● Heavily blended with other nectars, ● Ultra-filtered, removing pollen markers and delicate enzymes. Kumaon Organics Raw Java Plum Honey is: ● Sourced from Himalayan region ● Harvested in small seasonal batches ● Raw and gently strained, never overheated or ultra-filtered. This preserves its distinctive deep colour, complex aroma, mild bitterness, and bioactive compounds—the true sensory and functional signature of Jamun honey."
+                    },
+                    {
+                        "text": "Ethical, seasonal and ecosystem-first",
+                        "des": " Seasonal & limited  harvested only when Jamun trees naturally bloom, ● Farm-to-jar sourcing  supporting local Kumaoni beekeepers, ● Forest-friendly beekeeping protecting wild Jamun trees and pollinator habitats. Slow-crafted at altitude, Raw Java Plum Honey is a functional gourmet honey—ideal for mindful daily use, metabolic balance and antioxidant support. Ethically sourced. Botanically specific. Science-aligned. This is Jamun honey in its most authentic form."
+                    }
+                ],
+                "faq": [
+                    {
+                        "question": "Why is Java Plum (Jamun) honey more watery than other honey?",
+                        "answer": "Java plum honey is naturally lighter and more fluid because jamun nectar has a higher natural moisture content. Being raw and unprocessed, the honey is not artificially thickened or dehydrated, so its natural flow is retained."
+                    },
+                    {
+                        "question": "Does watery honey mean it is adulterated?",
+                        "answer": "No. Texture alone does not indicate purity. Many raw forest and monofloral honeys are naturally runny. Artificially thick honey may actually be processed or blended."
+                    },
+                    {
+                        "question": "Why does the taste feel slightly strong or astringent??",
+                        "answer": "Java plum honey has a distinctive natural flavour profile that may include mild bitterness or astringency. This is a normal characteristic of jamun nectar and forest-origin honey."
+                    },
+                    {
+                        "question": "Will this honey crystallize?",
+                        "answer": "WJava plum honey typically crystallizes slowly or not at all due to its natural sugar composition. Lack of crystallization does not mean the honey is impure."
+                    },
+                    {
+                        "question": "WIs Java Plum honey suitable for daily use?",
+                        "answer": "Yes, it can be enjoyed as part of a balanced diet, like any natural sweetener."
+                    },
+                    {
+                        "question": "Is this honey safe for children?",
+                        "answer": "Honey should not be given to infants below 1 year of age.For others, it may be consumed in moderation."
+                    },
+                    {
+                        "question": "Why does the colour vary from batch to batch?",
+                        "answer": "Natural factors such as season, region, climate and floral availability can cause variations in colour and taste. These variations indicate authenticity, not inconsistency."
+                    },
+                    {
+                        "question": "Is this honey heated or chemically treated?",
+                        "answer": "No. This honey is raw and unheated, with no added sugars, syrups or chemicals. Natural variations in texture, color and taste are expected."
+                    },
+                    {
+                        "question": "How should Java Plum honey be stored?",
+                        "answer": "Store in a cool, dry place, away from direct sunlight. Keep it moisture free and always use a dry spoon."
+                    },
+                    {
+                        "question": "What type of bees collect this honey?",
+                        "answer": "This honey is collected by native Indian honeybees such as Apis cerana and/or Apis dorsata, depending on the harvest region and season."
+                    },
+                    {
+                        "question": "Why does it smell different from regular honey?",
+                        "answer": "Java plum honey has a deep, earthy aroma, typical of forest and jamun blossom nectar. This aroma is natural and varies with each harvest."
+                    }
+                ],
+                "disclaimer": "This product is a natural fermented food. Variations in colour, taste, clarity are natural. "
+            },
+            {
+                "id": 55,
+                "name": "Raw Jamun Vinager",
+                "desc": "Our Raw Organic Java Plum honey is unfiltered and unpasteurised, preserving its natural anti-bacterial, anti-viral, anti-inflammatory and anti-fungal.",
+                "price": "250000",
+                "text1_title": "Properties",
+                "text1_desc": "Rich in vitamins, minerals, anti-oxidants and enzymes, its boosts overall immunity and helps prevent various diseases. Made exclusively by Apis Cerana Indica bees from java plum (jamun) flowers, this honey is sustainably sourced from remote Himalayan villages.",
+                "text2_title": "Ingredients",
+                "text2_desc": "Ingredients - 100% raw, unpasteurised honey. Kumaon Organics Raw Java Plum Honey is a rare, single-region, small-batch honey harvested from the nectar of wild jamun (Syzygium cumini) blossoms in the Himalayan foothills. Naturally darker and richer, jamun honey is known to contain higher levels of polyphenols, flavonoids and anthocyanins—potent antioxidants that help combat oxidative stress and support metabolic health. Its low glycaemic tendency and natural antimicrobial and anti-inflammatory properties make it especially valued for gut health, throat comfort and overall immune support. Rich in prebiotic sugars, it helps nourish beneficial gut bacteria while offering a deep, earthy flavour profile. Enjoy it in warm water, as a natural sweetener, or straight off the spoon—an intentional, functional indulgence for everyday wellness.",
+                "text3_title": "Single-Origin • Himalayan Wild Flora",
+                "text3_desc": "Made from Jamun blossoms — limited seasonal bloom Never heated, filtered or processed Naturally dark, mineral-rich & low glycemic Prebiotic  nzymes support digestion & microbiome health Contains iron, magnesium & naturally occurring micronutrients",
+                "text4_title": "Taste Notes",
+                "text4_desc": "(Real Jamun Blossom Signature Profile), Smooth, Slightly Tangy, Not Too Sweet, Taste the Himalayas — one spoon at a time.",
+                "product_image": "../images/Raw Jamun Vinager/01.jpg",
+                "product_images": [
+                    {
+                        "id": 1,
+                        "name": "Angled view",
+                        "src": "../images/Raw Jamun Vinager/01.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 2,
+                        "name": "Angled view",
+                        "src": "../images/Raw Jamun Vinager/02.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 3,
+                        "name": "Angled view",
+                        "src": "../images/Raw Jamun Vinager/03.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 4,
+                        "name": "Angled view",
+                        "src": "../images/Raw Jamun Vinager/04.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    }
+                ],
+                "productbg-image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                "why_title": "Why this is not just another dark honey?",
+                "why_desc": "What makes Kumaon Organics Raw Java Plum (Jamun) Honey stand out.",
+                "why": [
+                    {
+                        "text": "Jamun (Java Plum) nectar = naturally higher antioxidant density",
+                        "des": "Dark, monofloral honeys consistently show higher total phenolic and flavonoid content than lighter, multi-floral honeys—resulting in stronger antioxidant activity. Jamun (Syzygium cumini) flowers are naturally rich in anthocyanins, phenolic acids, and flavonoids, compounds well known for their role in antioxidant defence and metabolic support. Harvested during the Jamun flowering season in the Kumaon Himalayas, our Raw Java Plum Honey carries botanical richness directly from flower to jar—without dilution or blending."
+                    },
+                    {
+                        "text": "Wild Jamun trees, not cultivated monocultures",
+                        "des": "Most commercial dark honeys are sourced from plantation-style crops or agricultural belts, often exposed to higher pesticide and chemical inputs. Jamun trees in the Kumaon region grow wild in forested landscapes, far from intensive farming and chemical agriculture. Research shows that bees foraging in forested, low-intensity ecosystems produce hive products with lower pesticide residue risk compared to heavily cultivated or urban areas. Our honey reflects this cleaner, more biodiverse Himalayan environment—pure, unindustrialised and closer to nature."
+                    },
+                    {
+                        "text": "True monofloral, single-region, small-batch",
+                        "des": "Many so-called “Jamun honeys” on the market are : ● Heavily blended with other nectars, ● Heavily blended with other nectars, ● Ultra-filtered, removing pollen markers and delicate enzymes. Kumaon Organics Raw Java Plum Honey is: ● Sourced from Himalayan region ● Harvested in small seasonal batches ● Raw and gently strained, never overheated or ultra-filtered. This preserves its distinctive deep colour, complex aroma, mild bitterness, and bioactive compounds—the true sensory and functional signature of Jamun honey."
+                    },
+                    {
+                        "text": "Ethical, seasonal and ecosystem-first",
+                        "des": " Seasonal & limited  harvested only when Jamun trees naturally bloom, ● Farm-to-jar sourcing  supporting local Kumaoni beekeepers, ● Forest-friendly beekeeping protecting wild Jamun trees and pollinator habitats. Slow-crafted at altitude, Raw Java Plum Honey is a functional gourmet honey—ideal for mindful daily use, metabolic balance and antioxidant support. Ethically sourced. Botanically specific. Science-aligned. This is Jamun honey in its most authentic form."
+                    }
+                ],
+                "faq": [
+                    {
+                        "question": "Why is Java Plum (Jamun) honey more watery than other honey?",
+                        "answer": "Java plum honey is naturally lighter and more fluid because jamun nectar has a higher natural moisture content. Being raw and unprocessed, the honey is not artificially thickened or dehydrated, so its natural flow is retained."
+                    },
+                    {
+                        "question": "Does watery honey mean it is adulterated?",
+                        "answer": "No. Texture alone does not indicate purity. Many raw forest and monofloral honeys are naturally runny. Artificially thick honey may actually be processed or blended."
+                    },
+                    {
+                        "question": "Why does the taste feel slightly strong or astringent??",
+                        "answer": "Java plum honey has a distinctive natural flavour profile that may include mild bitterness or astringency. This is a normal characteristic of jamun nectar and forest-origin honey."
+                    },
+                    {
+                        "question": "Will this honey crystallize?",
+                        "answer": "WJava plum honey typically crystallizes slowly or not at all due to its natural sugar composition. Lack of crystallization does not mean the honey is impure."
+                    },
+                    {
+                        "question": "WIs Java Plum honey suitable for daily use?",
+                        "answer": "Yes, it can be enjoyed as part of a balanced diet, like any natural sweetener."
+                    },
+                    {
+                        "question": "Is this honey safe for children?",
+                        "answer": "Honey should not be given to infants below 1 year of age.For others, it may be consumed in moderation."
+                    },
+                    {
+                        "question": "Why does the colour vary from batch to batch?",
+                        "answer": "Natural factors such as season, region, climate and floral availability can cause variations in colour and taste. These variations indicate authenticity, not inconsistency."
+                    },
+                    {
+                        "question": "Is this honey heated or chemically treated?",
+                        "answer": "No. This honey is raw and unheated, with no added sugars, syrups or chemicals. Natural variations in texture, color and taste are expected."
+                    },
+                    {
+                        "question": "How should Java Plum honey be stored?",
+                        "answer": "Store in a cool, dry place, away from direct sunlight. Keep it moisture free and always use a dry spoon."
+                    },
+                    {
+                        "question": "What type of bees collect this honey?",
+                        "answer": "This honey is collected by native Indian honeybees such as Apis cerana and/or Apis dorsata, depending on the harvest region and season."
+                    },
+                    {
+                        "question": "Why does it smell different from regular honey?",
+                        "answer": "Java plum honey has a deep, earthy aroma, typical of forest and jamun blossom nectar. This aroma is natural and varies with each harvest."
+                    }
+                ],
+                "disclaimer": "This product is a natural fermented food. Variations in colour, taste, clarity are natural. "
+            },
+            {
+                "id": 56,
+                "name": "Raw Organic Java Plum",
+                "desc": "Our Raw Organic Java Plum honey is unfiltered and unpasteurised, preserving its natural anti-bacterial, anti-viral, anti-inflammatory and anti-fungal.",
+                "price": "250000",
+                "text1_title": "Properties",
+                "text1_desc": "Rich in vitamins, minerals, anti-oxidants and enzymes, its boosts overall immunity and helps prevent various diseases. Made exclusively by Apis Cerana Indica bees from java plum (jamun) flowers, this honey is sustainably sourced from remote Himalayan villages.",
+                "text2_title": "Ingredients",
+                "text2_desc": "Ingredients - 100% raw, unpasteurised honey. Kumaon Organics Raw Java Plum Honey is a rare, single-region, small-batch honey harvested from the nectar of wild jamun (Syzygium cumini) blossoms in the Himalayan foothills. Naturally darker and richer, jamun honey is known to contain higher levels of polyphenols, flavonoids and anthocyanins—potent antioxidants that help combat oxidative stress and support metabolic health. Its low glycaemic tendency and natural antimicrobial and anti-inflammatory properties make it especially valued for gut health, throat comfort and overall immune support. Rich in prebiotic sugars, it helps nourish beneficial gut bacteria while offering a deep, earthy flavour profile. Enjoy it in warm water, as a natural sweetener, or straight off the spoon—an intentional, functional indulgence for everyday wellness.",
+                "text3_title": "Single-Origin • Himalayan Wild Flora",
+                "text3_desc": "Made from Jamun blossoms — limited seasonal bloom Never heated, filtered or processed Naturally dark, mineral-rich & low glycemic Prebiotic  nzymes support digestion & microbiome health Contains iron, magnesium & naturally occurring micronutrients",
+                "text4_title": "Taste Notes",
+                "text4_desc": "(Real Jamun Blossom Signature Profile), Smooth, Slightly Tangy, Not Too Sweet, Taste the Himalayas — one spoon at a time.",
+                "product_image": "../images/Raw Java Plum/01.jpg",
+                "product_images": [
+                    {
+                        "id": 1,
+                        "name": "Angled view",
+                        "src": "../images/Raw Java Plum/01.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 2,
+                        "name": "Angled view",
+                        "src": "../images/Raw Java Plum/02.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 3,
+                        "name": "Angled view",
+                        "src": "../images/Raw Java Plum/03.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    },
+                    {
+                        "id": 4,
+                        "name": "Angled view",
+                        "src": "../images/Raw Java Plum/04.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    }
+                ],
+                "productbg-image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                "why_title": "Why this is not just another dark honey?",
+                "why_desc": "What makes Kumaon Organics Raw Java Plum (Jamun) Honey stand out.",
+                "why": [
+                    {
+                        "text": "Jamun (Java Plum) nectar = naturally higher antioxidant density",
+                        "des": "Dark, monofloral honeys consistently show higher total phenolic and flavonoid content than lighter, multi-floral honeys—resulting in stronger antioxidant activity. Jamun (Syzygium cumini) flowers are naturally rich in anthocyanins, phenolic acids, and flavonoids, compounds well known for their role in antioxidant defence and metabolic support. Harvested during the Jamun flowering season in the Kumaon Himalayas, our Raw Java Plum Honey carries botanical richness directly from flower to jar—without dilution or blending."
+                    },
+                    {
+                        "text": "Wild Jamun trees, not cultivated monocultures",
+                        "des": "Most commercial dark honeys are sourced from plantation-style crops or agricultural belts, often exposed to higher pesticide and chemical inputs. Jamun trees in the Kumaon region grow wild in forested landscapes, far from intensive farming and chemical agriculture. Research shows that bees foraging in forested, low-intensity ecosystems produce hive products with lower pesticide residue risk compared to heavily cultivated or urban areas. Our honey reflects this cleaner, more biodiverse Himalayan environment—pure, unindustrialised and closer to nature."
+                    },
+                    {
+                        "text": "True monofloral, single-region, small-batch",
+                        "des": "Many so-called “Jamun honeys” on the market are : ● Heavily blended with other nectars, ● Heavily blended with other nectars, ● Ultra-filtered, removing pollen markers and delicate enzymes. Kumaon Organics Raw Java Plum Honey is: ● Sourced from Himalayan region ● Harvested in small seasonal batches ● Raw and gently strained, never overheated or ultra-filtered. This preserves its distinctive deep colour, complex aroma, mild bitterness, and bioactive compounds—the true sensory and functional signature of Jamun honey."
+                    },
+                    {
+                        "text": "Ethical, seasonal and ecosystem-first",
+                        "des": " Seasonal & limited  harvested only when Jamun trees naturally bloom, ● Farm-to-jar sourcing  supporting local Kumaoni beekeepers, ● Forest-friendly beekeeping protecting wild Jamun trees and pollinator habitats. Slow-crafted at altitude, Raw Java Plum Honey is a functional gourmet honey—ideal for mindful daily use, metabolic balance and antioxidant support. Ethically sourced. Botanically specific. Science-aligned. This is Jamun honey in its most authentic form."
+                    }
+                ],
+                "faq": [
+                    {
+                        "question": "Why is Java Plum (Jamun) honey more watery than other honey?",
+                        "answer": "Java plum honey is naturally lighter and more fluid because jamun nectar has a higher natural moisture content. Being raw and unprocessed, the honey is not artificially thickened or dehydrated, so its natural flow is retained."
+                    },
+                    {
+                        "question": "Does watery honey mean it is adulterated?",
+                        "answer": "No. Texture alone does not indicate purity. Many raw forest and monofloral honeys are naturally runny. Artificially thick honey may actually be processed or blended."
+                    },
+                    {
+                        "question": "Why does the taste feel slightly strong or astringent??",
+                        "answer": "Java plum honey has a distinctive natural flavour profile that may include mild bitterness or astringency. This is a normal characteristic of jamun nectar and forest-origin honey."
+                    },
+                    {
+                        "question": "Will this honey crystallize?",
+                        "answer": "WJava plum honey typically crystallizes slowly or not at all due to its natural sugar composition. Lack of crystallization does not mean the honey is impure."
+                    },
+                    {
+                        "question": "WIs Java Plum honey suitable for daily use?",
+                        "answer": "Yes, it can be enjoyed as part of a balanced diet, like any natural sweetener."
+                    },
+                    {
+                        "question": "Is this honey safe for children?",
+                        "answer": "Honey should not be given to infants below 1 year of age.For others, it may be consumed in moderation."
+                    },
+                    {
+                        "question": "Why does the colour vary from batch to batch?",
+                        "answer": "Natural factors such as season, region, climate and floral availability can cause variations in colour and taste. These variations indicate authenticity, not inconsistency."
+                    },
+                    {
+                        "question": "Is this honey heated or chemically treated?",
+                        "answer": "No. This honey is raw and unheated, with no added sugars, syrups or chemicals. Natural variations in texture, color and taste are expected."
+                    },
+                    {
+                        "question": "How should Java Plum honey be stored?",
+                        "answer": "Store in a cool, dry place, away from direct sunlight. Keep it moisture free and always use a dry spoon."
+                    },
+                    {
+                        "question": "What type of bees collect this honey?",
+                        "answer": "This honey is collected by native Indian honeybees such as Apis cerana and/or Apis dorsata, depending on the harvest region and season."
+                    },
+                    {
+                        "question": "Why does it smell different from regular honey?",
+                        "answer": "Java plum honey has a deep, earthy aroma, typical of forest and jamun blossom nectar. This aroma is natural and varies with each harvest."
+                    }
+                ],
+                "disclaimer": "This product is a natural fermented food. Variations in colour, taste, clarity are natural. "
+            },
+            {
+                "id": 57,
+                "name": "Raw Organic Java Plum",
+                "desc": "",
+                "price": "250000",
+                "text1_title": "",
+                "text1_desc": "",
+                "text2_title": "",
+                "text2_desc": "",
+                "text3_title": "",
+                "text3_desc": "",
+                "text4_title": "",
+                "text4_desc": "",
+                "product_image": "../images/Raw Java Plum/01.jpg",
+                "product_images": [
+                    {
+                        "id": 1,
+                        "name": "Angled view",
+                        "src": "../images/Raw Java Plum/01.jpg",
+                        "alt": "Angled front view with bag zipped and handles upright."
+                    }
+                ],
+                "productbg-image": "",
+                "why_title": "",
+                "why_desc": "",
+                "why": [
+                    {
+                        "text": "",
+                        "des": ""
+                    }
+                ],
+                "faq": [
+                    {
+                        "question": "",
+                        "answer": ""
+                    }
+                ],
+                "disclaimer": "This product is a natural fermented food. Variations in colour, taste, clarity are natural. "
+            }
+        ]
+    }
+]

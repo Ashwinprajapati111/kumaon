@@ -1,0 +1,152 @@
+[
+    {
+        "photogallery": [
+            {
+                "id": 1,
+                "title": "Organic Farming Event",
+                "photo": [
+                    "/images/eventimages/18781 [Converted].jpg"
+                ],
+                "photos": [
+                    "/images/eventimages/18781 [Converted].jpg",
+                    "/images/eventimages/4 X 6 banner gujarati.jpg",
+                    "/images/eventimages/Bhavesh_ID Card copy.jpg",
+                    "/images/eventimages/Bhavesh_ID Card.jpg",
+                    "/images/eventimages/amantran.jpg"
+                ],
+                "videos": [
+                    "https://www.youtube.com/embed/dQw4w9WgXcQ"
+                ]
+            },
+            {
+                "id": 2,
+                "title": "Honey Harvest Festival",
+                "photo": [
+                    "/images/eventimages/18781 [Converted].jpg"
+                ],
+                "photos": [
+                    "/images/eventimages/18781 [Converted].jpg",
+                    "/images/eventimages/4 X 6 banner gujarati.jpg"
+                ],
+                "videos": [
+                    "https://www.youtube.com/embed/ysz5S6PUM-U"
+                ]
+            },
+            {
+                "id": 3,
+                "title": "Honey Harvest Festival",
+                "photo": [
+                    "/images/eventimages/18781 [Converted].jpg"
+                ],
+                "photos": [
+                    "/images/eventimages/18781 [Converted].jpg",
+                    "/images/eventimages/4 X 6 banner gujarati.jpg",
+                    "/images/eventimages/amantran.jpg"
+                ],
+                "videos": [
+                    "https://www.youtube.com/embed/ysz5S6PUM-U"
+                ]
+            },
+            {
+                "id": 4,
+                "title": "Honey Harvest Festival",
+                "photo": [
+                    "/images/eventimages/18781 [Converted].jpg"
+                ],
+                "photos": [
+                    "/images/eventimages/18781 [Converted].jpg",
+                    "/images/eventimages/4 X 6 banner gujarati.jpg",
+                    "/images/eventimages/Bhavesh_ID Card copy.jpg",
+                    "/images/eventimages/Bhavesh_ID Card.jpg"
+                ],
+                "videos": [
+                    "https://www.youtube.com/embed/ysz5S6PUM-U"
+                ]
+            }
+        ],
+        "videogallery": [
+            {
+                "id": 50,
+                "title": "Organic Farming Event Video",
+                "photo": [
+                    "/images/eventimages/18781 [Converted].jpg"
+                ],
+                "photos": [
+                    "/images/eventimages/18781 [Converted].jpg",
+                    "/images/eventimages/4 X 6 banner gujarati.jpg",
+                    "/images/eventimages/Bhavesh_ID Card copy.jpg",
+                    "/images/eventimages/Bhavesh_ID Card.jpg",
+                    "/images/eventimages/amantran.jpg"
+                ],
+                "videos": [
+                    "https://www.youtube.com/embed/dQw4w9WgXcQ"
+                ]
+            },
+            {
+                "id": 51,
+                "title": "Honey Harvest Festival Video",
+                "photo": [
+                    "/images/eventimages/18781 [Converted].jpg"
+                ],
+                "photos": [
+                    "/images/eventimages/18781 [Converted].jpg",
+                    "/images/eventimages/4 X 6 banner gujarati.jpg"
+                ],
+                "videos": [
+                    "https://www.youtube.com/embed/ysz5S6PUM-U"
+                ]
+            },
+            {
+                "id": 52,
+                "title": "Honey Harvest Festival Video",
+                "photo": [
+                    "/images/eventimages/18781 [Converted].jpg"
+                ],
+                "photos": [
+                    "/images/eventimages/18781 [Converted].jpg",
+                    "/images/eventimages/4 X 6 banner gujarati.jpg",
+                    "/images/eventimages/amantran.jpg"
+                ],
+                "videos": [
+                    "https://www.youtube.com/embed/ysz5S6PUM-U"
+                ]
+            },
+            {
+                "id": 53,
+                "title": "Honey Harvest Festival Video",
+                "photo": [
+                    "/images/eventimages/18781 [Converted].jpg"
+                ],
+                "photos": [
+                    "/images/eventimages/18781 [Converted].jpg",
+                    "/images/eventimages/4 X 6 banner gujarati.jpg",
+                    "/images/eventimages/Bhavesh_ID Card copy.jpg",
+                    "/images/eventimages/Bhavesh_ID Card.jpg"
+                ],
+                "videos": [
+                    "https://www.youtube.com/embed/ysz5S6PUM-U"
+                ]
+            }
+        ],
+        "sortOption": [
+            {
+                "id": 5000,
+                "name": "Most Popular",
+                "href": "#",
+                "current": true
+            },
+            {
+                "id": 5001,
+                "name": "Photos",
+                "href": "/Eventsphoto",
+                "current": true
+            },
+            {
+                "id": 5002,
+                "name": "Videos",
+                "href": "/Eventsvideo",
+                "current": true
+            }
+        ]
+    }
+]
