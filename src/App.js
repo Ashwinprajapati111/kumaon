@@ -21,7 +21,7 @@ import BlogList from "./Component/Blog/BlogList";
 import BlogDetails from "./Component/Blog/BlogDetails";
 
 import Eventsphoto from "./Component/Gallery/Eventsphoto";
-import Eventsvideo from "./Component/Gallery/Eventsvideo";
+
 import PhotoDetails from "./Component/Gallery/PhotoDetails";
 import VideoDetails from "./Component/Gallery/VideoDetails";
 
@@ -51,6 +51,7 @@ import Users from "./Admin/Users";
 import AddInsta from "./Admin/Admin_instas";
 import Contacts from "./Admin/Contacts";
 import AdminDashboard from "./Admin/Orders";
+import Unused_photos from "./Admin/Unused_photos";
 
 /* ================= PROTECTED ================= */
 import ProtectedRoute from "./redux/ProtectedRoute";
@@ -159,10 +160,11 @@ function App() {
         <Route path="/admin/admin-users" element={<ProtectedRoute role="admin"><Admin_users /></ProtectedRoute>} />
         <Route path="/admin/contacts" element={<ProtectedRoute role="admin"><Contacts /></ProtectedRoute>} />
         <Route path="/admin/users" element={<ProtectedRoute role="admin"><Users /></ProtectedRoute>} />
+        <Route path="/admin/unused_photos" element={<ProtectedRoute role="admin"><Unused_photos /></ProtectedRoute>} />
 
         {/* ================= GALLERY ================= */}
         <Route path="/events-photo" element={<Eventsphoto />} />
-        <Route path="/events-video" element={<Eventsvideo />} />
+      
         <Route path="/photo/:id" element={<PhotoDetails />} />
         <Route path="/video/:id" element={<VideoDetails />} />
 

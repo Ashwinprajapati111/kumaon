@@ -35,6 +35,7 @@ import {
   ShoppingCartIcon,
   UsersIcon,
   BuildingStorefrontIcon,
+  PhotoIcon,
 } from "@heroicons/react/24/outline";
 
 // ✅ Import Instagram icon from react-icons
@@ -50,6 +51,8 @@ const menuItems = [
   { path: "/admin/contacts", label: "Contacts", icon: UsersIcon },
   { path: "/admin/admin-users", label: "Admin", icon: UsersIcon },
   { path: "/admin/users", label: "Users", icon: UsersIcon },
+   { path: "/admin/add-photos", label: "Add Event Photos", icon: PhotoIcon },
+   { path: "/admin/unused_photos", label: "Unused Photos", icon: PhotoIcon },
 ];
 
 /* ================= COMPONENT ================= */
@@ -72,12 +75,15 @@ const Myside = () => {
 
       {/* HEADER */}
       <SidebarHeader className="border-b border-gray-200 dark:border-zinc-700 p-4">
-        <div className="flex items-center gap-3">
+        <Link to="/"><div className="flex items-center gap-3">
+
           <img src={Logo} alt="logo" className="w-10 h-10 object-contain" />
           <SidebarLabel className="font-semibold text-zinc-900 dark:text-white">
             Kumaon Organics
           </SidebarLabel>
+
         </div>
+        </Link>
       </SidebarHeader>
 
       {/* BODY */}
@@ -93,7 +99,7 @@ const Myside = () => {
                   className={`flex items-center gap-3 p-2 rounded-lg transition ${isActive
                     ? "bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-200 font-semibold"
                     : "hover:bg-gray-100 dark:hover:bg-zinc-800 text-zinc-900 dark:text-white"
-                  }`}
+                    }`}
                 >
                   {/* Render react-icons correctly */}
                   {React.createElement(item.icon, { className: "w-5 h-5" })}

@@ -1,388 +1,365 @@
-import Admin_test from './Admin_test';
-import React, { useState, useRef, useMemo } from "react";
-
-import { FaEdit, FaTrash } from "react-icons/fa";
-import './Mycss.css';
-import { useParams } from "react-router-dom";
-import Data from "../Data.json";
+import React, { useState, useRef, useEffect } from "react";
+import { FaEdit, FaTrash, FaPlus, FaEye } from "react-icons/fa";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
+export default function EventGallery() {
+  const formRef = useRef(null);
 
-export default function Example() {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
+
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
 
-  const fileInputRef = useRef(null);
+  const [images, setImages] = useState([]);
+  const [previews, setPreviews] = useState([]);
 
-  // Handle Image Change
+  // ✅ EXISTING IMAGES (IMPORTANT)
+  const [existingImages, setExistingImages] = useState([]);
+
+  const [tab, setTab] = useState(2);
+  const [galleryData, setGalleryData] = useState([]);
+  const [editId, setEditId] = useState(null);
+
+  // ================= COVER =================
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+    if (!file) return;
 
-    if (file) {
-      setImage(file);
-      setPreview(URL.createObjectURL(file));
-    }
+    setImage(file);
+    setPreview(URL.createObjectURL(file));
   };
 
-  // Remove Selected Image
-  const handleCancelImage = () => {
+  const removeImage = () => {
     setImage(null);
     setPreview(null);
-    fileInputRef.current.value = "";
   };
 
-  // Handle Submit
-  const handleSubmit = (e) => {
+  // ================= MULTIPLE =================
+  const handleImagesChange = (e) => {
+    const files = Array.from(e.target.files);
+    setImages(files);
+    setPreviews(files.map((f) => URL.createObjectURL(f)));
+  };
+
+  const removeMultipleImage = (index) => {
+    const imgs = [...images];
+    const prev = [...previews];
+
+    imgs.splice(index, 1);
+    prev.splice(index, 1);
+
+    setImages(imgs);
+    setPreviews(prev);
+  };
+
+  // ✅ REMOVE EXISTING IMAGE FROM SERVER
+  const removeExistingImage = async (imgName) => {
+    try {
+      await axios.put(
+        `http://localhost:5000/api/gallery/delete-image/${editId}`,
+        { imageName: imgName }
+      );
+
+      setExistingImages((prev) =>
+        prev.filter((img) => img !== imgName)
+      );
+
+      toast.success("Image removed ❌");
+    } catch {
+      toast.error("Failed to remove image");
+    }
+  };
+
+  // ================= FETCH =================
+  const fetchGallery = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/gallery/all");
+      setGalleryData(Array.isArray(res.data) ? res.data : []);
+    } catch {
+      toast.error("Failed to fetch gallery ❌");
+    }
+  };
+
+  useEffect(() => {
+    fetchGallery();
+  }, []);
+
+  // ================= SUBMIT =================
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("date", date);
-    formData.append("image", image);
+    if (!title || !date) {
+      return toast.error("Title & Date required ❌");
+    }
 
-    console.log("Event Title:", title);
-    console.log("Event Date:", date);
-    console.log("Image:", image);
+    try {
+      let galleryId = editId;
 
-    alert("Event Photo Added Successfully");
+      // ===== CREATE =====
+      if (!editId) {
+        if (!image) {
+          return toast.error("Cover image required ❌");
+        }
 
-    // 👉 Connect backend here
-    // axios.post("http://localhost:5000/upload", formData)
-  };
-  // content of tab 2
-  const photo = Data[0].photogallery;
-  const [galleries, setGalleries] = useState([
-    { photo }
-  ]);
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("eventDate", date);
+        formData.append("coverImage", image);
 
-  const [filterYear, setFilterYear] = useState("All");
-  const [sortOrder, setSortOrder] = useState("latest");
-  const [currentPage, setCurrentPage] = useState(1);
+        const res = await axios.post(
+          "http://localhost:5000/api/gallery/create",
+          formData
+        );
 
-  const itemsPerPage = 5;
+        galleryId = res.data.galleryId;
+      }
 
-  // Unique Years
-  const years = [...new Set(galleries.map((g) => g.year))];
+      // ===== UPDATE =====
+      if (editId) {
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("eventDate", date);
 
-  // Delete Gallery
-  const handleDelete = (id) => {
-    if (window.confirm("Delete this gallery?")) {
-      setGalleries(galleries.filter((g) => g.id !== id));
+        if (image) {
+          formData.append("coverImage", image);
+        }
+
+        await axios.put(
+          `http://localhost:5000/api/gallery/update/${editId}`,
+          formData
+        );
+      }
+
+      // ===== MULTIPLE IMAGES =====
+      if (images.length > 0 && galleryId) {
+        const imgData = new FormData();
+
+        images.forEach((img) => {
+          imgData.append("images", img);
+        });
+
+        await axios.post(
+          `http://localhost:5000/api/gallery/upload-images/${galleryId}`,
+          imgData
+        );
+      }
+
+      toast.success(editId ? "Updated ✏️" : "Created 🎉");
+
+      // RESET
+      setTitle("");
+      setDate("");
+      setImage(null);
+      setPreview(null);
+      setImages([]);
+      setPreviews([]);
+      setExistingImages([]);
+      setEditId(null);
+
+      formRef.current?.reset();
+
+      fetchGallery();
+      setTab(2);
+
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong ❌");
     }
   };
 
-  // Edit Gallery
-  const handleEdit = (id) => {
-    alert("Edit Gallery ID: " + id);
-  };
+  // ================= DELETE =================
+ const deleteGallery = (id) => {
+  toast((t) => (
+    <div className="flex flex-col gap-3">
+      <span>Are you sure you want to delete this gallery?</span>
 
-  // Filter + Sort Logic
-  const filteredData = useMemo(() => {
-    let data = [...galleries];
+      <div className="flex justify-end gap-2">
+        <button
+          onClick={() => toast.dismiss(t.id)}
+          className="px-3 py-1 bg-gray-200 rounded"
+        >
+          Cancel
+        </button>
 
-    if (filterYear !== "All") {
-      data = data.filter((g) => g.year === Number(filterYear));
-    }
+        <button
+          onClick={async () => {
+            try {
+              await axios.delete(
+                `http://localhost:5000/api/gallery/delete/${id}`
+              );
+              toast.success("Deleted 🗑️");
+              fetchGallery();
+            } catch {
+              toast.error("Delete failed ❌");
+            }
+            toast.dismiss(t.id);
+          }}
+          className="px-3 py-1 bg-red-500 text-white rounded"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  ));
+};
 
-    data.sort((a, b) =>
-      sortOrder === "latest"
-        ? new Date(b.date) - new Date(a.date)
-        : new Date(a.date) - new Date(b.date)
-    );
+  // ================= EDIT =================
+  const handleEdit = (item) => {
+    setEditId(item._id);
+    setTitle(item.title);
+    setDate(item.eventDate?.split("T")[0] || "");
 
-    return data;
-  }, [galleries, filterYear, sortOrder]);
+    setPreview(`http://localhost:5000/file/files/${item.coverImage}`);
 
-  // Pagination Logic
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedData = filteredData.slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
-  const [tab, setTab] = useState(2);
+    // ✅ LOAD EXISTING IMAGES
+    setExistingImages(item.photos || []);
 
-  // import data
-
-  const myproduct = paginatedData[0].photo;
-  console.log(myproduct)
-  const [isExpanded, setIsExpanded] = useState(false);
-  const toggleText = () => {
-    setIsExpanded(!isExpanded);
+    setTab(1);
   };
 
   return (
-    <div className="bg-gray-100">
-      <div>
-        <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className=" items-baseline justify-between border-b border-gray-200 pt-24 pb-6">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <h1 className="col-span-4 text-4xl font-bold tracking-tight text-gray-900">Photo Galleries</h1>
-              <div className=" flex flex-col sm:flex-row gap-3">
+    <div className="min-h-screen bg-slate-100 p-6">
+      <Toaster position="top-right" />
 
+      <div className="max-w-7xl mx-auto">
 
-                <button className=" flex items-center  bg-[#d1a345] text-black px-6 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg hover:bg-yellow-700 transition duration-300"
-                  onClick={() => setTab(2)}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 mr-4">
-                    <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                    <path fillRule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z" clipRule="evenodd" />
-                  </svg>
+        {/* HEADER */}
+        <div className="bg-slate-900 text-white p-6 rounded-2xl mb-6">
+          <h1 className="text-2xl font-bold">Event Gallery</h1>
 
+          <div className="flex gap-4 mt-4">
+            <button onClick={() => setTab(1)} className="bg-amber-400 px-4 py-2 rounded flex gap-2">
+              <FaPlus /> Add
+            </button>
 
-                  View Gallery
-                </button>
-                <button className="flex items-center bg-[#d1a345] text-black px-6 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg hover:bg-yellow-700 transition duration-300"
-                  onClick={() => setTab(1)}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 mr-2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                  </svg>
-
-                  Add Gallery
-                </button>
-              </div>
-            </div>
+            <button onClick={() => setTab(2)} className="bg-white text-black px-4 py-2 rounded flex gap-2">
+              <FaEye /> View
+            </button>
           </div>
+        </div>
 
+        {/* FORM */}
+        {tab === 1 && (
+          <form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            className="bg-white p-6 rounded-xl max-w-xl mx-auto space-y-4"
+          >
 
-          <section aria-labelledby="products-heading" className="pt-6 pb-24">
-            {tab === 1 &&
-              <div className="h-auto bg-gray-100 flex content-between justify-center p-6">
-                <div className="bg-white shadow-xl rounded-2xl p-8 w-full">
+            <input
+              type="text"
+              placeholder="Event Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full border p-3 rounded"
+            />
 
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              className="w-full border p-3 rounded"
+            />
 
-                  <h2 className="text-2xl font-bold text-left text-black mb-6">
-                    Add Event Photo Gallery
-                  </h2>
+            {/* COVER */}
+            <input type="file" accept="image/*" onChange={handleImageChange} />
 
-                  <form onSubmit={handleSubmit} className="space-y-5">
-
-                    {/* Event Title */}
-                    <div>
-                      <label className="block font-medium mb-2">
-                        Event Title
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Enter event title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                        className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500 outline-none"
-                      />
-                    </div>
-
-                    {/* Event Date */}
-                    <div>
-                      <label className="block font-medium mb-2">
-                        Event Date
-                      </label>
-                      <input
-                        type="date"
-                        value={date}
-                        onChange={(e) => setDate(e.target.value)}
-                        required
-                        className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500 outline-none"
-                      />
-                    </div>
-
-                    {/* Single Image Upload */}
-                    <div>
-                      <label className="block font-medium mb-2">
-                        Upload Photo
-                      </label>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        ref={fileInputRef}
-                        onChange={handleImageChange}
-                        required
-                        className="w-full"
-                      />
-                    </div>
-
-                    {/* Image Preview Section */}
-                    {preview && (
-                      <div className="relative">
-                        <p className="mb-2 font-medium">Preview:</p>
-                        <img
-                          src={preview}
-                          alt="preview"
-                          className="h-48 w-full object-cover rounded-lg shadow"
-                        />
-
-                        {/* Cancel Button */}
-                        <button
-                          type="button"
-                          onClick={handleCancelImage}
-                          className="absolute top-8 right-2 bg-red-600 text-white px-3 py-1 text-sm rounded hover:bg-red-700 transition"
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    )}
-
-                    {/* Submit Button */}
-                    <button
-                      onClick={handleCancelImage}
-                      type="submit"
-                      className="w-full bg-[#d1a345] text-black px-6 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg hover:bg-yellow-700 transition duration-300 mb-6"
-                    >
-                      Add Event Photo Gallery
-                    </button>
-
-                  </form>
-                </div>
+            {preview && (
+              <div className="relative">
+                <img src={preview} className="h-32 w-full object-cover rounded" />
+                <button type="button" onClick={removeImage} className="absolute top-1 right-1 bg-black text-white px-2">✕</button>
               </div>
-            }
-            {tab === 2 &&
-              <div className="min-h-screen bg-gray-100 p-1">
-                <div className="bg-white shadow-xl rounded-2xl p-4 max-w-6xl mx-auto">
-                  <h2 className="text-2xl font-bold text-left text-black mb-6">
-                    View Event Photo Gallery
-                  </h2>
-                  {/* Filters */}
-                  <div className="flex flex-wrap gap-4 mb-6">
-                    <select
-                      value={filterYear}
-                      onChange={(e) => {
-                        setFilterYear(e.target.value);
-                        setCurrentPage(1);
-                      }}
-                      className="border p-2 rounded-lg"
-                    >
-                      <option value="All">All Years</option>
-                      {years.map((year) => (
-                        <option key={year} value={year}>
-                          {year}
-                        </option>
-                      ))}
-                    </select>
+            )}
 
-                    <select
-                      value={sortOrder}
-                      onChange={(e) => {
-                        setSortOrder(e.target.value);
-                        setCurrentPage(1);
-                      }}
-                      className="border p-2 rounded-lg"
-                    >
-                      <option value="latest">Latest</option>
-                      <option value="oldest">Oldest</option>
-                    </select>
-                  </div>
-
-                  {/* Table */}
-
-                  <div className="overflow-x-auto">
-                    <table className="w-full border-collapse">
-                      <thead>
-                        <tr className="tabtop text-black">
-                          <th className="p-3">Thumbnail</th>
-                          <th className="p-3 text-left">Title</th>
-                          <th className="p-3 text-center">Year</th>
-                          <th className="p-3 text-center">Date</th>
-                        
-                          <th className="p-3 text-center">Actions</th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
-                        {myproduct.map((gallery) => (
-                          <tr key={gallery.id} className="border-b hover:bg-gray-50">
-
-                            {/* Thumbnail */}
-                            <td className="p-3 text-center">
-                              <img
-                                src={gallery.image}
-                                alt="thumbnail"
-                                className="h-16 w-16 object-cover rounded-lg mx-auto"
-                              />
-                            </td>
-
-                            <td className="p-3">{gallery.name}</td>
-                            
-                            <td className="p-3 text-center">{gallery.name}</td>
-                            <td className="p-3 text-center">{gallery.name}</td>
-
-                            {/* Actions */}
-                            <td className="p-3 text-center">
-                              <div className="flex justify-center gap-4 text-lg">
-                                <button
-                                  onClick={() => handleEdit(gallery.id)}
-                                  className="text-blue-600 hover:text-blue-800"
-                                >
-                                  <FaEdit />
-                                </button>
-
-                                <button
-                                  onClick={() => handleDelete(gallery.id)}
-                                  className="text-red-600 hover:text-red-800"
-                                >
-                                  <FaTrash />
-                                </button>
-                              </div>
-                            </td>
-
-                          </tr>
-                        ))}
-
-                        {paginatedData.length === 0 && (
-                          <tr>
-                            <td colSpan="5" className="text-center p-4 text-gray-500">
-                              No Galleries Found
-                            </td>
-                          </tr>
-                        )}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  {/* Pagination */}
-                  <div className="flex justify-center mt-6 gap-2">
-                    <button
-                      disabled={currentPage === 1}
-                      onClick={() => setCurrentPage((prev) => prev - 1)}
-                      className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
-                    >
-                      Prev
-                    </button>
-
-                    {[...Array(totalPages)].map((_, index) => (
+            {/* EXISTING IMAGES */}
+            {existingImages.length > 0 && (
+              <div>
+                <p className="text-sm mb-1">Existing Images:</p>
+                <div className="grid grid-cols-3 gap-2">
+                  {existingImages.map((img, i) => (
+                    <div key={i} className="relative">
+                      <img
+                        src={`http://localhost:5000/file/files/${img}`}
+                        className="h-24 w-full object-cover rounded"
+                      />
                       <button
-                        key={index}
-                        onClick={() => setCurrentPage(index + 1)}
-                        className={`px-4 py-2 rounded ${currentPage === index + 1
-                          ? "tabtop text-black"
-                          : "bg-gray-200"
-                          }`}
+                        type="button"
+                        onClick={() => removeExistingImage(img)}
+                        className="absolute top-1 right-1 bg-black text-white text-xs px-2"
                       >
-                        {index + 1}
+                        ✕
                       </button>
-                    ))}
-
-                    <button
-                      disabled={currentPage === totalPages || totalPages === 0}
-                      onClick={() => setCurrentPage((prev) => prev + 1)}
-                      className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
-                    >
-                      Next
-                    </button>
-                  </div>
-
+                    </div>
+                  ))}
                 </div>
               </div>
-            }
+            )}
 
-          </section>
-        </main>
+            {/* NEW MULTIPLE */}
+            <input type="file" multiple accept="image/*" onChange={handleImagesChange} />
+
+            {previews.length > 0 && (
+              <div className="grid grid-cols-3 gap-2">
+                {previews.map((src, i) => (
+                  <div key={i} className="relative">
+                    <img src={src} className="h-24 w-full object-cover rounded" />
+                    <button type="button" onClick={() => removeMultipleImage(i)} className="absolute top-1 right-1 bg-black text-white text-xs px-2">✕</button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <button type="submit" className="w-full bg-amber-400 py-3 rounded font-bold">
+              {editId ? "Update" : "Submit"}
+            </button>
+
+          </form>
+        )}
+
+        {/* VIEW */}
+        {tab === 2 && (
+          <div className="grid grid-cols-4 gap-4">
+            {galleryData.map((item) => (
+              <div key={item._id} className="bg-white p-3 rounded shadow">
+
+                <img
+                  src={`http://localhost:5000/file/files/${item.coverImage}`}
+                  className="h-32 w-full object-cover rounded"
+                />
+
+                <h3 className="mt-2">{item.title}</h3>
+
+                <p className="text-sm text-gray-500">
+                  {new Date(item.eventDate).toLocaleDateString()}
+                </p>
+
+                <div className="flex gap-2 mt-2 overflow-x-auto">
+                  {item.photos?.map((img, i) => (
+                    <img
+                      key={i}
+                      src={`http://localhost:5000/file/files/${img}`}
+                      className="h-16 w-16 object-cover rounded"
+                    />
+                  ))}
+                </div>
+
+                <div className="flex justify-between mt-3">
+                  <FaEdit className="cursor-pointer" onClick={() => handleEdit(item)} />
+                  <FaTrash className="cursor-pointer text-red-500" onClick={() => deleteGallery(item._id)} />
+                </div>
+
+              </div>
+            ))}
+          </div>
+        )}
+
       </div>
-    </div >
-  )
+    </div>
+  );
 }
