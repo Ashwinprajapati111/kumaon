@@ -21,7 +21,7 @@ export default function BlogList() {
 
   const getBlogs = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/blog/getall");
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/blog/getall`);
       setBlogs(res.data);
     } catch (err) {
       console.log(err);
@@ -80,7 +80,7 @@ export default function BlogList() {
                   {/* IMAGE */}
                   <div className="overflow-hidden">
                     <img
-                      src={`http://localhost:5000/file/files/${blog.blogimage}`}
+                      src={`${process.env.REACT_APP_API_URL}/file/files/${blog.blogimage}`}
                       alt={blog.title}
                       className="h-52 w-full object-cover group-hover:scale-105 transition duration-300"
                     />
@@ -92,7 +92,7 @@ export default function BlogList() {
                     <div className="flex items-center gap-2 mb-2 text-sm text-gray-500">
                       <FaUserCircle className="text-lg" />
                       <span>
-                        {blog.adminName || "Admin"}
+                        {blog.adminName || "Kumaon Organic"}
                       </span>
                       <span className="ml-auto text-xs text-gray-400">
                         {formatDate(blog.createdAt)}

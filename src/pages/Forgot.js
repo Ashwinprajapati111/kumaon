@@ -12,14 +12,30 @@ export default function ForgotPassword() {
 
   const handleSendOTP = async (e) => {
     e.preventDefault();
+
+    // ✅ normalize input (important fix)
+    const email = emailOrMobile.trim().toLowerCase();
+
+    if (!email) {
+      toast.error("Email is required");
+      return;
+    }
+
     try {
-      const result = await dispatch(sendOTP({ emailOrMobile }));
+      const result = await dispatch(sendOTP({ email }));
+
       if (result.meta.requestStatus === "fulfilled") {
         toast.success(result.payload.message || "OTP sent successfully!");
-        navigate("/reset-password", { state: { emailOrMobile } });
+
+        // ✅ send correct key forward
+        navigate("/reset-password", {
+          state: { email: emailOrMobile.trim().toLowerCase() },
+        });
+
       } else {
         toast.error(result.payload?.message || "Failed to send OTP");
       }
+
     } catch {
       toast.error("Something went wrong!");
     }
@@ -27,7 +43,7 @@ export default function ForgotPassword() {
 
   return (
     <>
-      <Toaster position="top-right" />
+      
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-emerald-400 to-emerald-600 p-4">
         <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md p-10 relative overflow-hidden">
           {/* Optional decorative circles */}
@@ -37,6 +53,7 @@ export default function ForgotPassword() {
           <h2 className="text-3xl font-extrabold mb-6 text-center text-gray-800">
             Forgot Password
           </h2>
+
           <p className="text-center text-gray-500 mb-8">
             Enter your email or mobile number to receive an OTP
           </p>
@@ -45,13 +62,14 @@ export default function ForgotPassword() {
             <div>
               <input
                 type="text"
-                placeholder="Email or Mobile"
+                placeholder="Email"
                 value={emailOrMobile}
                 onChange={(e) => setEmailOrMobile(e.target.value)}
                 required
                 className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-400 focus:outline-none transition"
               />
             </div>
+
             <button
               type="submit"
               className="w-full py-3 bg-emerald-500 text-white font-semibold rounded-xl hover:bg-emerald-600 shadow-lg transition"

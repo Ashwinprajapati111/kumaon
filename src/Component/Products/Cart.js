@@ -13,7 +13,8 @@ export default function Checkout() {
   const [cart, setCart] = useState([]);
   const [user, setUser] = useState(null);
   const [addresses, setAddresses] = useState([]);
-  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [selectedAddressId, setSelectedAddressId] = useState(null);
+
   const [formData, setFormData] = useState({
     email: "",
     firstName: "",
@@ -26,24 +27,72 @@ export default function Checkout() {
     pincode: "",
     type: "Home",
   });
+
+  const [newAddress, setNewAddress] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    address: "",
+    city: "",
+    state: "",
+    country: "",
+    pincode: "",
+    type: "Home",
+  });
+
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
+  const [emailVerified, setEmailVerified] = useState(false);
+  const [countryStateMap, setCountryStateMap] = useState({
+    India: [],
+  });
+  const [priceData, setPriceData] = useState(null);
   const navigate = useNavigate();
 
-  const countryStateMap = {
-    India: ["Gujarat", "Maharashtra", "Delhi"],
-    USA: ["California", "Texas", "Florida"],
+  const fetchStates = async () => {
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/price`);
+
+      const data = res.data?.data?.[0];
+
+      if (!data) return;
+
+      // ✅ store full backend data (IMPORTANT)
+      setPriceData(data);
+
+      // ✅ extract states
+      const states = data.stateCharges.map(item => item.state);
+
+      setCountryStateMap({
+        India: states,
+      });
+
+    } catch (error) {
+      console.error("Failed to fetch states:", error);
+      toast.error("Failed to load states");
+    }
   };
 
-  // Load cart
+  const getShippingCharge = () => {
+    if (!priceData || !formData.state) return 0;
+
+    const stateData = priceData.stateCharges?.find(
+      s => s.state === formData.state
+    );
+
+    return stateData?.charge || 0;
+  };
+
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(storedCart);
   }, []);
 
-  // Fetch user and addresses
   useEffect(() => {
     fetchUserAndAddresses();
+    fetchStates();
   }, []);
 
   const fetchUserAndAddresses = async () => {
@@ -57,21 +106,34 @@ export default function Checkout() {
     }
 
     try {
-      const userRes = await axios.get(`http://localhost:5000/user/${userId}`, {
+      const userRes = await axios.get(`${process.env.REACT_APP_API_URL}/user/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
       setUser(userRes.data);
-      setFormData(prev => ({ ...prev, email: userRes.data.email }));
 
-      const addrRes = await axios.get("http://localhost:5000/user/address", {
+      setFormData(prev => ({
+        ...prev,
+        email: userRes.data.email || prev.email
+      }));
+
+      const addrRes = await axios.get(`${process.env.REACT_APP_API_URL}/user/address`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      setAddresses(addrRes.data);
-      const defaultAddr = addrRes.data.find(a => a.isDefault) || addrRes.data[0];
-      if (defaultAddr) {
-        setSelectedAddress(defaultAddr);
-        setFormData(prev => ({ ...prev, ...defaultAddr }));
+      const addressList = addrRes.data || [];
+      setAddresses(addressList);
+
+      if (!selectedAddressId && addressList.length > 0) {
+        const defaultAddr =
+          addressList.find(a => a.isDefault) || addressList[0];
+
+        setSelectedAddressId(defaultAddr._id);
+
+        setFormData(prev => ({
+          ...prev,
+          ...defaultAddr
+        }));
       }
 
     } catch (err) {
@@ -87,22 +149,41 @@ export default function Checkout() {
   const validatePincode = (pin) => /^[1-9][0-9]{5}$/.test(pin);
 
   const handleAddAddress = async () => {
-    if (!validatePincode(formData.pincode)) {
+    if (!validatePincode(newAddress.pincode)) {
       toast.error("Invalid PIN");
       return;
     }
 
     const token = localStorage.getItem("token");
-    if (!token) return toast.error("You must login first");
 
     try {
       setLoading(true);
-      await axios.post("http://localhost:5000/user/address", formData, {
-        headers: { Authorization: `Bearer ${token}` },
+
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/user/address`,
+        newAddress,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      // ✅ IMPORTANT: Re-fetch full updated address list
+      await fetchUserAndAddresses();
+
+      // ✅ reset form
+      setNewAddress({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        address: "",
+        city: "",
+        state: "",
+        country: "",
+        pincode: "",
+        type: "Home",
       });
-      toast.success("Address added!");
+
       setAddModalOpen(false);
-      fetchUserAndAddresses();
+      toast.success("Address added");
+
     } catch (err) {
       console.error(err.response || err.message);
       toast.error("Failed to add address");
@@ -110,22 +191,44 @@ export default function Checkout() {
       setLoading(false);
     }
   };
+  const subtotal = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
-  // CART LOGIC
-  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const total = subtotal;
+  // ✅ Free shipping above ₹1000
+  const shippingCharge =
+    subtotal > 1000 ? 0 : getShippingCharge();
+
+  // ✅ GST from backend
+ const taxRate = priceData?.gst ? Number(priceData.gst) / 100 : 0;
+
+  const taxAmount = subtotal * taxRate;
+
+  const total = Math.round(subtotal + shippingCharge + taxAmount);
 
   const updateCart = (updated) => {
     setCart(updated);
     localStorage.setItem("cart", JSON.stringify(updated));
   };
-  const increaseQty = (id) => updateCart(cart.map(i => i.id === id ? { ...i, quantity: i.quantity + 1 } : i));
-  const decreaseQty = (id) => updateCart(cart.map(i => i.id === id && i.quantity > 1 ? { ...i, quantity: i.quantity - 1 } : i));
-  const removeItem = (id) => updateCart(cart.filter(i => i.id !== id));
+
+  const increaseQty = (id) =>
+    updateCart(cart.map(i => i.id === id ? { ...i, quantity: i.quantity + 1 } : i));
+
+  const decreaseQty = (id) =>
+    updateCart(cart.map(i => i.id === id && i.quantity > 1 ? { ...i, quantity: i.quantity - 1 } : i));
+
+  const removeItem = (id) =>
+    updateCart(cart.filter(i => i.id !== id));
 
   const handlePayment = async (e) => {
     e.preventDefault();
+
     if (cart.length === 0) return toast.error("Cart is empty");
+
+    if (!selectedAddressId) {
+      return toast.error("Please select address");
+    }
 
     const token = localStorage.getItem("token");
     if (!token) return toast.error("You must login first");
@@ -133,21 +236,16 @@ export default function Checkout() {
     try {
       setLoading(true);
 
-      const loadRazorpay = () =>
-        new Promise((resolve) => {
-          const script = document.createElement("script");
-          script.src = "https://checkout.razorpay.com/v1/checkout.js";
-          script.onload = () => resolve(true);
-          script.onerror = () => resolve(false);
-          document.body.appendChild(script);
-        });
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      document.body.appendChild(script);
 
-      const isLoaded = await loadRazorpay();
-      if (!isLoaded) return toast.error("Razorpay SDK failed to load");
+      await new Promise(resolve => {
+        script.onload = resolve;
+      });
 
-      // Create order on backend
       const { data: order } = await axios.post(
-        "http://localhost:5000/api/payment/create-order",
+        `${process.env.REACT_APP_API_URL}/api/payment/create-order`,
         { amount: total * 100 },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -158,56 +256,67 @@ export default function Checkout() {
         currency: order.currency,
         order_id: order.id,
         name: "My Shop",
-        description: "Order Payment",
         handler: async function (response) {
-          try {
-            const verifyRes = await axios.post(
-              "http://localhost:5000/api/payment/verify-payment",
-              {
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature: response.razorpay_signature,
-                cart,
-                customer: formData,
-                subtotal,
-                shipping: 0,
-                tax: 0,
-                total,
-              },
-              { headers: { Authorization: `Bearer ${token}` } }
-            );
+          await axios.post(
+            `${process.env.REACT_APP_API_URL}/api/payment/verify-payment`,
+            {
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+              cart,
+              customer: formData,
+              total,
+            },
+            { headers: { Authorization: `Bearer ${token}` } }
+          );
 
-            if (verifyRes.data.success) {
-              toast.success("Payment Successful");
-              localStorage.removeItem("cart");
-              setCart([]);
-              navigate(`/order-success/${response.razorpay_order_id}`);
-            }
-
-          } catch (err) {
-            console.error(err.response || err.message);
-            toast.error("Payment verification failed");
-          }
+          toast.success("Payment Successful");
+          localStorage.removeItem("cart");
+          setCart([]);
+          navigate(`/order-success/${response.razorpay_order_id}`);
         },
-        prefill: {
-          name: formData.firstName + " " + formData.lastName,
-          email: formData.email,
-          contact: formData.phone,
-        },
-        theme: { color: "#4f46e5" },
       };
 
-      const rzp = new window.Razorpay(options);
-      rzp.open();
+      new window.Razorpay(options).open();
 
-    } catch (error) {
-      console.error(error.response || error.message);
-      toast.error("Payment error");
+    } catch (err) {
+      toast.error("Payment failed");
     } finally {
       setLoading(false);
     }
   };
+  const handleSendOTP = async () => {
+    if (!formData.email) return toast.error("Enter email first");
 
+    try {
+      await axios.post(`${process.env.REACT_APP_API_URL}/auth/send-otp`, {
+        email: formData.email,
+      });
+
+      setOtpSent(true);
+      toast.success("OTP sent to your email");
+    } catch (err) {
+      toast.error("Failed to send OTP");
+    }
+  };
+
+  const handleVerifyOTP = async () => {
+    if (!otp) return toast.error("Enter OTP first");
+
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/verify-otp`, {
+        email: formData.email.trim().toLowerCase(),
+        otp: otp.toString().trim(),
+      });
+
+      if (res.data.success) {
+        setEmailVerified(true);
+        toast.success("Email verified");
+      }
+    } catch (err) {
+      toast.error("Verification failed");
+    }
+  };
   return (
     <>
       <Header />
@@ -219,20 +328,84 @@ export default function Checkout() {
           <form onSubmit={handlePayment} className="bg-white p-6 rounded-xl shadow lg:col-span-2">
             <h2 className="text-2xl font-semibold mb-6">Shipping Details</h2>
 
-            <input type="email" name="email" value={formData.email} onChange={handleChange}
-              placeholder="Email" className="w-full border p-3 rounded mb-4" required />
+            <div className="mb-4">
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
+                className="w-full border p-3 rounded"
+                required
+              />
+
+              {/* VERIFY BUTTON */}
+              <button
+                type="button"
+                onClick={handleSendOTP}
+                className="mt-2 bg-blue-600 text-white px-4 py-2 rounded"
+              >
+                Send OTP
+              </button>
+
+              {/* OTP INPUT */}
+              {otpSent && (
+                <div className="mt-3">
+                  <input
+                    type="text"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    placeholder="Enter OTP"
+                    className="w-full border p-3 rounded mb-2"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={handleVerifyOTP}
+                    className="bg-green-600 text-white px-4 py-2 rounded"
+                  >
+                    Verify OTP
+                  </button>
+                </div>
+              )}
+
+              {/* VERIFIED MESSAGE */}
+              {emailVerified && (
+                <p className="text-green-600 mt-2">✅ Email Verified</p>
+              )}
+            </div>
 
             <h3 className="text-lg font-medium mb-2">Select Address</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
               {addresses.length ? addresses.map(addr => (
                 <div key={addr._id} className={`border p-4 rounded-lg cursor-pointer hover:shadow-md transition relative
-                  ${selectedAddress?._id === addr._id ? "border-indigo-600 bg-indigo-50" : "border-gray-200 bg-white"}`}
-                  onClick={() => { setSelectedAddress(addr); setFormData(prev => ({ ...prev, ...addr })) }}
+                  ${selectedAddressId === addr._id ? "border-indigo-600 bg-indigo-50" : "border-gray-200 bg-white"}`}
+                  onClick={() => {
+                    setSelectedAddressId(addr._id);
+
+                    setFormData(prev => ({
+                      ...prev,
+                      firstName: addr.firstName || "",
+                      lastName: addr.lastName || "",
+                      phone: addr.phone || "",
+                      address: addr.address || "",
+                      city: addr.city || "",
+                      state: addr.state || "",
+                      country: addr.country || "",
+                      pincode: addr.pincode || "",
+                      type: addr.type || "Home",
+                    }));
+                  }}
                 >
                   {addr.isDefault && <span className="absolute top-2 right-2 bg-green-600 text-white text-xs px-2 py-1 rounded-full">Default</span>}
                   <p className="font-medium">{addr.firstName} {addr.lastName}</p>
                   <p>{addr.address}</p>
-                  <p>{addr.city}, {addr.state}, {addr.country} - {addr.pincode}</p>
+                  <p>
+                    {[addr.city, addr.state, addr.country]
+                      .filter(Boolean)
+                      .join(", ")}
+                    {addr.pincode && ` - ${addr.pincode}`}
+                  </p>
                   <p>{addr.phone}</p>
                   <p className="text-sm text-gray-500">Type: {addr.type}</p>
                 </div>
@@ -242,8 +415,19 @@ export default function Checkout() {
             <button type="button" onClick={() => setAddModalOpen(true)}
               className="mb-6 bg-indigo-600 text-white px-4 py-2 rounded">+ Add New Address</button>
 
-            <button type="submit" className="w-full bg-indigo-600 text-white py-3 rounded-lg text-lg font-medium">
-              Pay ₹{total}
+            {/* PAY BUTTON */}
+            <button
+              type="submit"
+              disabled={!emailVerified}
+              className={`w-full mt-6 py-3 rounded-lg text-lg
+                ${emailVerified
+                  ? "bg-indigo-600 text-white"
+                  : "bg-gray-400 cursor-not-allowed"}
+              `}
+            >
+              {emailVerified
+                ? `Proceed to Pay ₹${total}`
+                : "Verify Email to Continue"}
             </button>
           </form>
 
@@ -270,9 +454,28 @@ export default function Checkout() {
               ))}
             </ul>
 
-            <div className="border-t mt-4 pt-4">
-              <div className="flex justify-between"><span>Subtotal</span><span>₹{subtotal}</span></div>
-              <div className="flex justify-between font-bold mt-2 text-lg"><span>Total</span><span>₹{total}</span></div>
+            <div className="border-t mt-4 pt-4 space-y-2">
+              <div className="flex justify-between">
+                <span>Subtotal</span>
+                <span>₹{subtotal.toFixed(2)}</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span>Tax ({priceData?.gst ?? 0}%)</span>
+                <span>₹{taxAmount.toFixed(2)}</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span>Shipping <p>(free Shipping above ₹1000)</p></span>
+                <span>{shippingCharge === 0 ? "Free" : `₹${shippingCharge}`}</span>
+              </div>
+
+
+
+              <div className="flex justify-between font-bold mt-2 text-lg border-t pt-2">
+                <span>Total</span>
+                <span>₹{total.toFixed(2)}</span>
+              </div>
             </div>
           </div>
 
@@ -285,21 +488,46 @@ export default function Checkout() {
           <div className="bg-white p-6 rounded w-full max-w-lg">
             <h2 className="text-lg font-bold mb-4">Add New Address</h2>
             <div className="grid gap-3">
-              <input name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First Name" className="border p-2" />
-              <input name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Last Name" className="border p-2" />
-              <input name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone" className="border p-2" />
-              <textarea name="address" value={formData.address} onChange={handleChange} placeholder="Address" className="border p-2" />
-              <input name="city" value={formData.city} onChange={handleChange} placeholder="City" className="border p-2" />
-              <select name="country" value={formData.country} onChange={handleChange} className="border p-2">
+              <input name="firstName" value={newAddress.firstName} onChange={(e) =>
+                setNewAddress({ ...newAddress, firstName: e.target.value })
+              } placeholder="First Name" className="border p-2" />
+              <input name="lastName" value={newAddress.lastName} onChange={(e) =>
+                setNewAddress({ ...newAddress, lastName: e.target.value })
+              } placeholder="Last Name" className="border p-2" />
+              <input name="phone" value={newAddress.phone} onChange={(e) =>
+                setNewAddress({ ...newAddress, phone: e.target.value })
+              } placeholder="Phone" className="border p-2" />
+              <textarea name="address" value={newAddress.address} onChange={(e) =>
+                setNewAddress({ ...newAddress, address: e.target.value })
+              } placeholder="Address" className="border p-2" />
+              <input name="city" value={newAddress.city} onChange={(e) =>
+                setNewAddress({ ...newAddress, city: e.target.value })
+              } placeholder="City" className="border p-2" />
+              <select name="country" value={newAddress.country} onChange={(e) =>
+                setNewAddress({ ...newAddress, country: e.target.value })
+              } className="border p-2">
                 <option value="">Select Country</option>
                 {Object.keys(countryStateMap).map(c => <option key={c}>{c}</option>)}
               </select>
-              <select name="state" value={formData.state} onChange={handleChange} className="border p-2">
+              <select
+                name="state"
+                value={newAddress.state}
+                onChange={(e) =>
+                  setNewAddress({ ...newAddress, state: e.target.value })
+                }
+                className="border p-2"
+              >
                 <option value="">Select State</option>
-                {countryStateMap[formData.country]?.map(s => <option key={s}>{s}</option>)}
+                {countryStateMap[newAddress.country]?.map((s) => (
+                  <option key={s}>{s}</option>
+                ))}
               </select>
-              <input name="pincode" value={formData.pincode} onChange={handleChange} placeholder="Pincode" className="border p-2" />
-              <select name="type" value={formData.type} onChange={handleChange} className="border p-2">
+              <input name="pincode" value={newAddress.pincode} onChange={(e) =>
+                setNewAddress({ ...newAddress, pincode: e.target.value })
+              } placeholder="Pincode" className="border p-2" />
+              <select name="type" value={newAddress.type} onChange={(e) =>
+                setNewAddress({ ...newAddress, type: e.target.value })
+              } className="border p-2">
                 <option value="Home">Home</option>
                 <option value="Work">Work</option>
               </select>

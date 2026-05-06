@@ -219,7 +219,7 @@ export default function Example() {
             formData.append("why", JSON.stringify(why));
             formData.append("faq", JSON.stringify(faq));
 
-            await axios.post("http://localhost:5000/api/products/post", formData);
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/products/post`, formData);
 
             alert("Product Added successfully ✅");
 
@@ -281,7 +281,7 @@ export default function Example() {
                     <button
                         onClick={async () => {
                             try {
-                                await axios.delete(`http://localhost:5000/api/products/delete/${id}`);
+                                await axios.delete(`${process.env.REACT_APP_API_URL}/api/products/delete/${id}`);
                                 toast.dismiss(t.id);
                                 toast.success("Product deleted successfully 🗑️");
                                 showdata();
@@ -302,7 +302,7 @@ export default function Example() {
 
     // FETCH
     const showdata = async () => {
-        const res = await axios.get("http://localhost:5000/api/products/getall");
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/products/getall`);
         setSeData(res.data.reverse());
     };
 
@@ -316,16 +316,16 @@ export default function Example() {
         });
 
         setEditImagePreview(
-            `http://localhost:5000/file/files/${product.productimage}`
+            `${process.env.REACT_APP_API_URL}/file/files/${product.productimage}`
         );
 
         setEditBgPreview(
-            `http://localhost:5000/file/files/${product.productbgimage}`
+            `${process.env.REACT_APP_API_URL}/file/files/${product.productbgimage}`
         );
 
         setEditMultiPreview(
             product.productimages?.map(
-                (img) => `http://localhost:5000/file/files/${img}`
+                (img) => `${process.env.REACT_APP_API_URL}/file/files/${img}`
             ) || []
         );
 
@@ -499,7 +499,7 @@ export default function Example() {
             formData.append("faq", JSON.stringify(editProduct.faq));
 
             await axios.put(
-                `http://localhost:5000/api/products/update/${editProduct._id}`,
+                `${process.env.REACT_APP_API_URL}/api/products/update/${editProduct._id}`,
                 formData,
                 {
                     headers: {
@@ -972,7 +972,7 @@ export default function Example() {
                                         >
                                             <div className="relative">
                                                 <img
-                                                    src={`http://localhost:5000/file/files/${gallery.productimage}`}
+                                                    src={`${process.env.REACT_APP_API_URL}/file/files/${gallery.productimage}`}
                                                     alt={gallery.name}
                                                     className="h-60 w-full object-cover"
                                                 />
@@ -1030,7 +1030,7 @@ export default function Example() {
                                                                     openGalleryModal(
                                                                         gallery.productimages.map(
                                                                             (img) =>
-                                                                                `http://localhost:5000/file/files/${img}`
+                                                                                `${process.env.REACT_APP_API_URL}/file/files/${img}`
                                                                         ),
                                                                         `${gallery.name} Gallery`
                                                                     )
@@ -1046,13 +1046,13 @@ export default function Example() {
                                                         {gallery.productimages?.slice(0, 4).map((img, idx) => (
                                                             <img
                                                                 key={idx}
-                                                                src={`http://localhost:5000/file/files/${img}`}
+                                                                src={`${process.env.REACT_APP_API_URL}/file/files/${img}`}
                                                                 alt={gallery.name}
                                                                 onClick={() =>
                                                                     openGalleryModal(
                                                                         gallery.productimages.map(
                                                                             (m) =>
-                                                                                `http://localhost:5000/file/files/${m}`
+                                                                                `${process.env.REACT_APP_API_URL}/file/files/${m}`
                                                                         ),
                                                                         `${gallery.name} Gallery`,
                                                                         idx
@@ -1071,12 +1071,12 @@ export default function Example() {
                                                             Background Image
                                                         </p>
                                                         <img
-                                                            src={`http://localhost:5000/file/files/${gallery.productbgimage}`}
+                                                            src={`${process.env.REACT_APP_API_URL}/file/files/${gallery.productbgimage}`}
                                                             alt="bg"
                                                             onClick={() =>
                                                                 openGalleryModal(
                                                                     [
-                                                                        `http://localhost:5000/file/files/${gallery.productbgimage}`,
+                                                                        `${process.env.REACT_APP_API_URL}/file/files/${gallery.productbgimage}`,
                                                                     ],
                                                                     `${gallery.name} Background`
                                                                 )

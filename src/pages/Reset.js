@@ -9,7 +9,8 @@ export default function ResetPassword() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { emailOrMobile } = location.state || {};
+
+  const { email } = location.state || {}; // ✅ safe access
 
   const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -18,6 +19,11 @@ export default function ResetPassword() {
   const handleReset = async (e) => {
     e.preventDefault();
 
+    if (!email) {
+      toast.error("Email missing. Please restart the process.");
+      return;
+    }
+
     if (newPassword !== confirmPassword) {
       toast.error("Passwords do not match!");
       return;
@@ -25,7 +31,7 @@ export default function ResetPassword() {
 
     try {
       const result = await dispatch(
-        verifyOTP({ emailOrMobile, otp, newPassword })
+        verifyOTP({ emailOrMobile: email, otp, newPassword })
       );
 
       if (result.meta.requestStatus === "fulfilled") {
@@ -34,7 +40,8 @@ export default function ResetPassword() {
       } else {
         toast.error(result.payload?.message || "Failed to reset password");
       }
-    } catch {
+    } catch (err) {
+      console.error("RESET ERROR:", err); // ✅ debug
       toast.error("Something went wrong!");
     }
   };
@@ -44,12 +51,11 @@ export default function ResetPassword() {
       <Toaster position="top-right" />
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-emerald-400 to-emerald-600 p-4">
         <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md p-10 relative overflow-hidden">
-          
-          
 
           <h2 className="text-3xl font-extrabold mb-6 text-center text-gray-800">
             Reset Password
           </h2>
+
           <p className="text-center text-gray-500 mb-8">
             Enter the OTP sent to your email or mobile and set a new password
           </p>
@@ -63,6 +69,7 @@ export default function ResetPassword() {
               required
               className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-400 focus:outline-none transition"
             />
+
             <input
               type="password"
               placeholder="New Password"
@@ -71,6 +78,7 @@ export default function ResetPassword() {
               required
               className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-400 focus:outline-none transition"
             />
+
             <input
               type="password"
               placeholder="Confirm Password"
@@ -97,6 +105,7 @@ export default function ResetPassword() {
               Login
             </span>
           </p>
+
         </div>
       </div>
     </>

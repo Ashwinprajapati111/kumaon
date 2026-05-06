@@ -48,7 +48,7 @@ export default function UserProfile() {
   const fetchUser = async () => {
     try {
       setLoadingUser(true);
-      const res = await axios.get("http://localhost:5000/user/me", authHeader);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/me`, authHeader);
       setUser(res.data);
     } catch (err) {
       toast.error("Failed to fetch user");
@@ -59,7 +59,7 @@ export default function UserProfile() {
 
   const fetchAddresses = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/user/address", authHeader);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/address`, authHeader);
       setAddresses(res.data);
 
       // ✅ Load selected or default
@@ -98,7 +98,7 @@ export default function UserProfile() {
 
     try {
       setLoading(true);
-      await axios.post("http://localhost:5000/user/address", formData, authHeader);
+      await axios.post(`${process.env.REACT_APP_API_URL}/user/address`, formData, authHeader);
       toast.success("Address added ✅");
 
       setOpen(false);
@@ -126,7 +126,7 @@ export default function UserProfile() {
 
   const deleteAddress = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/user/address/${id}`, authHeader);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/user/address/${id}`, authHeader);
       toast.success("Deleted");
       fetchAddresses();
     } catch {
@@ -136,7 +136,7 @@ export default function UserProfile() {
 
   const setDefaultAddress = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/user/address/default/${id}`, {}, authHeader);
+      await axios.put(`${process.env.REACT_APP_API_URL}/user/address/default/${id}`, {}, authHeader);
       toast.success("Default updated");
       fetchAddresses();
     } catch {

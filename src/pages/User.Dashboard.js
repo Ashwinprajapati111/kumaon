@@ -18,7 +18,7 @@ import {
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
-  const [user, setUser] = useState(null);  // ← user fetched from API
+  const [user, setUser] = useState(null);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -33,26 +33,25 @@ export default function Dashboard() {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        const res = await axios.get("http://localhost:5000/order/myorders", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await axios.get(
+          `${process.env.REACT_APP_API_URL}/user/me`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-        // Assuming the API returns an array of orders, each having a `user` object
-        if (res.data.length > 0) {
-          const orderUser = res.data[0].user; // get user info from first order
-          setUser(orderUser);
-        }
+        setUser(res.data); // ✅ direct user
 
       } catch (err) {
-        console.error("Failed to fetch user info:", err);
+        console.error("Failed to fetch user:", err);
       }
     };
 
     fetchUser();
   }, []);
-console.log(user)
+
   return (
     <>
       <Header />
@@ -65,8 +64,9 @@ console.log(user)
 
             <div>
               <h1 className="text-2xl font-bold text-gray-800">
-                Welcome, {user?.firstName || "User"} 👋
+                Welcome, {user?.name || "User"} 👋
               </h1>
+
               <p className="text-gray-500 text-sm">
                 Manage your account, orders & cart
               </p>
@@ -183,7 +183,7 @@ console.log(user)
           {/* COMPONENTS */}
           {activeTab === "orders" && <Orders />}
           {activeTab === "cart" && <Cart />}
-          {activeTab === "profile" && <Profile user={user} />} {/* pass user as prop */}
+          {activeTab === "profile" && <Profile user={user} />}
 
         </div>
 

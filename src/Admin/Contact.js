@@ -35,7 +35,7 @@ export default function Example() {
         try {
             const token = localStorage.getItem("token");
 
-            const res = await axios.get("http://localhost:5000/contact/getall", {
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/contact/getall`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -118,7 +118,7 @@ export default function Example() {
                             try {
                                 const token = localStorage.getItem("token");
 
-                                await axios.delete(`http://localhost:5000/contact/delete/${id}`, {
+                                await axios.delete(`${process.env.REACT_APP_API_URL}/contact/delete/${id}`, {
                                     headers: {
                                         Authorization: `Bearer ${token}`
                                     }

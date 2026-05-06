@@ -10,7 +10,7 @@ export default function UnusedImagesManager() {
 
     /* ================= AXIOS CONFIG ================= */
     const api = axios.create({
-        baseURL: "http://localhost:5000",
+        baseURL: `${process.env.REACT_APP_API_URL}`,
         headers: {
             Authorization: `Bearer ${token}`,
         },

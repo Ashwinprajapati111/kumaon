@@ -1,7 +1,7 @@
 import "./App.css";
 import "./index.css";
 import { Toaster } from "react-hot-toast";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ScrollToTop from "./pages/ScrollToTop";
 
@@ -21,7 +21,6 @@ import BlogList from "./Component/Blog/BlogList";
 import BlogDetails from "./Component/Blog/BlogDetails";
 
 import Eventsphoto from "./Component/Gallery/Eventsphoto";
-
 import PhotoDetails from "./Component/Gallery/PhotoDetails";
 import VideoDetails from "./Component/Gallery/VideoDetails";
 
@@ -40,6 +39,7 @@ import Admin from "./Admin/Admin";
 import AdminLogin from "./pages/Admin.login";
 import AdminRegister from "./pages/Admin.Register";
 import AddProducts from "./Admin/AddProducts";
+import AddPrices from "./Admin/AddPrices";
 import AddPhotos from "./Admin/AddPhotos";
 import AddGallerys from "./Admin/AddGallerys";
 import AddVideos from "./Admin/AddVideos";
@@ -61,9 +61,29 @@ function App() {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const currentUser = user || storedUser;
 
+  const location = useLocation();
+
+  // 🔥 Check cart
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const hasCartItems = cart.length > 0;
+
+  // 🔥 Check redirect param (optional pro feature)
+  const params = new URLSearchParams(location.search);
+  const redirect = params.get("redirect");
+
+  // 🔥 Decide where user should go after login
+  const getUserRedirect = () => {
+    if (currentUser?.role === "admin") return "/admin-dashboard";
+
+    if (redirect === "cart") return "/Product/cart";
+
+    return hasCartItems ? "/Product/cart" : "/user-dashboard";
+  };
+
   return (
     <>
       <ScrollToTop />
+     
 
       <Routes>
         {/* ================= PUBLIC ================= */}
@@ -75,26 +95,24 @@ function App() {
         {/* ================= USER AUTH ================= */}
         <Route
           path="/register"
-          element={currentUser ? (
-            <Navigate
-              to={currentUser.role === "admin" ? "/admin-dashboard" : "/user-dashboard"}
-              replace
-            />
-          ) : (
-            <Register />
-          )}
+          element={
+            currentUser ? (
+              <Navigate to={getUserRedirect()} replace />
+            ) : (
+              <Register />
+            )
+          }
         />
 
         <Route
           path="/user-login"
-          element={currentUser ? (
-            <Navigate
-              to={currentUser.role === "admin" ? "/admin-dashboard" : "/user-dashboard"}
-              replace
-            />
-          ) : (
-            <Userlogin />
-          )}
+          element={
+            currentUser ? (
+              <Navigate to={getUserRedirect()} replace />
+            ) : (
+              <Userlogin />
+            )
+          }
         />
 
         <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -103,11 +121,13 @@ function App() {
         {/* ================= ADMIN AUTH ================= */}
         <Route
           path="/admin/login"
-          element={currentUser?.role === "admin" ? (
-            <Navigate to="/admin-dashboard" replace />
-          ) : (
-            <AdminLogin />
-          )}
+          element={
+            currentUser?.role === "admin" ? (
+              <Navigate to="/admin-dashboard" replace />
+            ) : (
+              <AdminLogin />
+            )
+          }
         />
 
         <Route path="/admin/register" element={<AdminRegister />} />
@@ -121,6 +141,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/user-History"
           element={
@@ -142,14 +163,18 @@ function App() {
         {/* ================= ADMIN ROUTES ================= */}
         <Route
           path="/admin"
-          element={currentUser?.role === "admin" ? (
-            <Navigate to="/admin-dashboard" replace />
-          ) : (
-            <Navigate to="/admin/login" replace />
-          )}
+          element={
+            currentUser?.role === "admin" ? (
+              <Navigate to="/admin-dashboard" replace />
+            ) : (
+              <Navigate to="/admin/login" replace />
+            )
+          }
         />
+
         <Route path="/admin/dashboard" element={<ProtectedRoute role="admin"><AdminDashboard /></ProtectedRoute>} />
         <Route path="/admin/add-products" element={<ProtectedRoute role="admin"><AddProducts /></ProtectedRoute>} />
+        <Route path="/admin/add-prices" element={<ProtectedRoute role="admin"><AddPrices /></ProtectedRoute>} />
         <Route path="/admin/add-photos" element={<ProtectedRoute role="admin"><AddPhotos /></ProtectedRoute>} />
         <Route path="/admin/add-videos" element={<ProtectedRoute role="admin"><AddVideos /></ProtectedRoute>} />
         <Route path="/admin/add-gallery" element={<ProtectedRoute role="admin"><AddGallerys /></ProtectedRoute>} />
@@ -164,14 +189,30 @@ function App() {
 
         {/* ================= GALLERY ================= */}
         <Route path="/events-photo" element={<Eventsphoto />} />
-      
         <Route path="/photo/:id" element={<PhotoDetails />} />
         <Route path="/video/:id" element={<VideoDetails />} />
 
         {/* ================= PRODUCTS ================= */}
         <Route path="/Product_details/:id" element={<Product_details />} />
-        <Route path="/Product/cart" element={<ProtectedRoute role="user"><Cart /></ProtectedRoute>} />
-        <Route path="/checkout" element={<ProtectedRoute role="user"><Checkout /></ProtectedRoute>} />
+
+        <Route
+          path="/Product/cart"
+          element={
+            <ProtectedRoute role="user">
+              <Cart />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute role="user">
+              <Checkout />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="/payment" element={<Payment />} />
 
         {/* ================= BLOG ================= */}
@@ -185,12 +226,11 @@ function App() {
         <Route
           path="*"
           element={
-            currentUser
-              ? <Navigate
-                to={currentUser.role === "admin" ? "/admin-dashboard" : "/user-dashboard"}
-                replace
-              />
-              : <Navigate to="/user-login" replace />
+            currentUser ? (
+              <Navigate to={getUserRedirect()} replace />
+            ) : (
+              <Navigate to="/user-login" replace />
+            )
           }
         />
       </Routes>

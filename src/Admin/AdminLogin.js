@@ -18,7 +18,7 @@ export default function Login() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/admin_api/login", // 🔥 change to live URL when deploy
+        `${process.env.REACT_APP_API_URL}/admin_api/login`, // 🔥 change to live URL when deploy
         { email, password }
       );
 

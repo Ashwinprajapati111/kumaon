@@ -9,6 +9,7 @@ import InstagramFeed from '../Component/InstagramFeed';
 import Newslatter from '../Component/Newslatter';
 import Test from '../Component/Test';
 import Footer from '../Component/Footer';
+import FloatingContact from '../Component/FloatingContact';
 
 const Home = () => {
   return (
@@ -31,6 +32,7 @@ const Home = () => {
       {/* <Newslatter /> */}
       <Test />
       <Footer />
+      <FloatingContact />
     </>
   );
 };

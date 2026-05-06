@@ -36,7 +36,7 @@ export default function Example() {
     const { id } = useParams();
     const [SeData, setSeData] = useState([])
     const showdata = async () => {
-        const res = await axios.get(`http://localhost:5000/api/products/getone/${id}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/products/getone/${id}`);
         setSeData(res.data);
 
     };
@@ -65,7 +65,7 @@ export default function Example() {
 
             // ✅ FIXED IMAGE URL
             image: SeData.productimages?.[0]
-                ? `http://localhost:5000/file/files/${SeData.productimages[0]}`
+                ? `${process.env.REACT_APP_API_URL}/file/files/${SeData.productimages[0]}`
                 : "",
 
             quantity: qty
@@ -110,7 +110,7 @@ export default function Example() {
                                         >
                                             <span className="sr-only">{image.name}</span>
                                             <span className="absolute inset-0 overflow-hidden rounded-md">
-                                                <img alt="" src={`http://localhost:5000/file/files/${image}`} className="size-full object-cover" />
+                                                <img alt="" src={`${process.env.REACT_APP_API_URL}/file/files/${image}`} className="size-full object-cover" />
                                             </span>
                                             <span
                                                 aria-hidden="true"
@@ -124,7 +124,7 @@ export default function Example() {
                             <TabPanels>
                                 {SeData?.productimages?.map((image) => (
                                     <TabPanel >
-                                        <img alt={image.name} src={`http://localhost:5000/file/files/${image}`} className="aspect-square w-full object-cover sm:rounded-lg" />
+                                        <img alt={image.name} src={`${process.env.REACT_APP_API_URL}/file/files/${image}`} className="aspect-square w-full object-cover sm:rounded-lg" />
                                     </TabPanel>
                                 ))}
                             </TabPanels>
@@ -179,17 +179,13 @@ export default function Example() {
 
                                 </div>
 
-                                {/* Add to Cart Button */}
-                                <Link to="/Product/cart">
-
-                                    <button
-                                        type="button"
-                                        onClick={addToCart}
-                                        className="flex items-center justify-center rounded-md bg-indigo-600 px-8 py-3 text-white hover:bg-indigo-700"
-                                    >
-                                        Add to Cart
-                                    </button>
-                                </Link>
+                                <button
+                                    type="button"
+                                    onClick={addToCart}
+                                    className="flex items-center justify-center rounded-md bg-indigo-600 px-8 py-3 text-white hover:bg-indigo-700"
+                                >
+                                    Add to Cart
+                                </button>
 
                             </div>
                             {/* add to cart ends */}
@@ -309,7 +305,7 @@ export default function Example() {
                     <div aria-hidden="true" className="relative">
                         <img
                             alt="test"
-                            src={`http://localhost:5000/file/files/${SeData.productbgimage}`}
+                            src={`${process.env.REACT_APP_API_URL}/file/files/${SeData.productbgimage}`}
                             className="h-96 w-full object-cover"
                         />
                         <div className="absolute inset-0 bg-linear-to-t from-white" />

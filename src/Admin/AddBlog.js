@@ -64,7 +64,7 @@ export default function Example() {
             formData.append("title", title);
             formData.append("subtitle", JSON.stringify(subtitle));
             if (blogimage) formData.append("blogimage", blogimage);
-            await axios.post("http://localhost:5000/blog/post", formData);
+            await axios.post(`${process.env.REACT_APP_API_URL}/blog/post`, formData);
             toast.success("Blog added successfully ✅");
             setTitle(""); setBlogimage(null); setBlogpreview(null);
             setSubtitle([{ subtitlein: "", subtitlematter: "" }]);
@@ -85,7 +85,7 @@ export default function Example() {
                     <button onClick={() => toast.dismiss(t.id)} className="px-3 py-1 rounded-lg bg-gray-200 hover:bg-gray-300">Cancel</button>
                     <button onClick={async () => {
                         toast.dismiss(t.id);
-                        try { await axios.delete(`http://localhost:5000/blog/delete/${id}`); toast.success("Blog deleted successfully 🗑️"); showdata(); }
+                        try { await axios.delete(`${process.env.REACT_APP_API_URL}/blog/delete/${id}`); toast.success("Blog deleted successfully 🗑️"); showdata(); }
                         catch (err) { console.log(err); toast.error("Delete failed ❌"); }
                     }} className="px-3 py-1 rounded-lg bg-red-600 text-white hover:bg-red-500">Delete</button>
                 </div>
@@ -95,7 +95,7 @@ export default function Example() {
 
     // Fetch data
     const showdata = async () => {
-        const res = await axios.get("http://localhost:5000/blog/getall");
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/blog/getall`);
         setSeData(res.data.reverse());
     };
     useEffect(() => { showdata(); }, []);
@@ -133,7 +133,7 @@ export default function Example() {
     const handleEdit = (blog) => {
         setEditData(blog); setEditTitle(blog.title);
         setEditSubtitle(typeof blog.subtitle === "string" ? JSON.parse(blog.subtitle) : blog.subtitle || []);
-        setEditPreview(blog.blogimage ? `http://localhost:5000/file/files/${blog.blogimage}` : null);
+        setEditPreview(blog.blogimage ? `${process.env.REACT_APP_API_URL}/file/files/${blog.blogimage}` : null);
         setEditImage(null); setIsOpen(true);
     };
     const handleUpdate = async (e) => {
@@ -144,7 +144,7 @@ export default function Example() {
             formData.append("subtitle", JSON.stringify(editSubtitle));
             if (editImage && editImage !== "remove") formData.append("blogimage", editImage);
             if (editImage === "remove") formData.append("removeImage", "true");
-            await axios.put(`http://localhost:5000/blog/update/${editData._id}`, formData);
+            await axios.put(`${process.env.REACT_APP_API_URL}/blog/update/${editData._id}`, formData);
             toast.success("Blog updated successfully ✏️");
             setIsOpen(false); showdata();
         } catch (err) { console.log(err); toast.error("Update failed ❌"); }
@@ -378,7 +378,7 @@ export default function Example() {
                                             <td className="p-4 text-center">{(mycurrentPage - 1) * itemsPerPage + index + 1}</td>
                                             <td className="p-4">{blog.title}</td>
                                             <td className="p-4 text-center">
-                                                {blog.blogimage && <img src={`http://localhost:5000/file/files/${blog.blogimage}`} alt="thumbnail" className="h-16 w-16 object-cover rounded-xl mx-auto shadow-sm border" />}
+                                                {blog.blogimage && <img src={`${process.env.REACT_APP_API_URL}/file/files/${blog.blogimage}`} alt="thumbnail" className="h-16 w-16 object-cover rounded-xl mx-auto shadow-sm border" />}
                                             </td>
                                             <td className="p-4 text-center flex justify-center gap-3">
                                                 <button onClick={() => handleEdit(blog)} className="bg-blue-100 text-blue-700 p-3 rounded-xl hover:bg-blue-600 hover:text-white transition"><FaEdit /></button>

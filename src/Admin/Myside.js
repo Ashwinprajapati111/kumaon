@@ -45,14 +45,15 @@ import { FaInstagram } from "react-icons/fa";
 const menuItems = [
   { path: "/admin/dashboard", label: "Admin Dashboard", icon: BuildingStorefrontIcon },
   { path: "/admin/add-products", label: "Add Product", icon: ShoppingCartIcon },
+  { path: "/admin/add-prices", label: "Add other Prices", icon: ShoppingCartIcon },
   { path: "/admin/add-sliders", label: "Add Slider", icon: RectangleStackIcon },
   { path: "/admin/add-blogs", label: "Add Blogs", icon: DocumentTextIcon },
   { path: "/admin/add-insta", label: "Add Insta Video", icon: FaInstagram },
   { path: "/admin/contacts", label: "Contacts", icon: UsersIcon },
   { path: "/admin/admin-users", label: "Admin", icon: UsersIcon },
   { path: "/admin/users", label: "Users", icon: UsersIcon },
-   { path: "/admin/add-photos", label: "Add Event Photos", icon: PhotoIcon },
-   { path: "/admin/unused_photos", label: "Unused Photos", icon: PhotoIcon },
+  { path: "/admin/add-photos", label: "Add Event Photos", icon: PhotoIcon },
+  { path: "/admin/unused_photos", label: "Unused Photos", icon: PhotoIcon },
 ];
 
 /* ================= COMPONENT ================= */

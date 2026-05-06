@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const API_URL = "http://localhost:5000/auth";
+const API_URL = `${process.env.REACT_APP_API_URL}/auth`;
 
 // ================= REGISTER =================
 export const registerUser = createAsyncThunk(
@@ -47,14 +47,32 @@ export const loginUser = createAsyncThunk(
 // ================= OTP =================
 export const sendOTP = createAsyncThunk(
   "auth/sendOTP",
-  async ({ emailOrMobile }, { rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
     try {
-      const res = await axios.post(`${API_URL}/send-otp`, { emailOrMobile });
-      toast.success(res.data.message || "OTP sent successfully!", { duration: 3000 });
+      // ✅ detect email or mobile
+      const isEmail = data.email.includes("@");
+
+      const payload = isEmail
+        ? { email: data.email }
+        : { mobile: data.email };
+
+      console.log("FINAL PAYLOAD:", payload); // 🔥 debug
+
+      const res = await axios.post(`${API_URL}/send-otp`, payload);
+
+      toast.success(res.data.message || "OTP sent successfully!", {
+        duration: 3000,
+      });
+
       return res.data;
     } catch (err) {
-      const message = err.response?.data?.message || err.message || "Failed to send OTP";
+      const message =
+        err.response?.data?.message ||
+        err.message ||
+        "Failed to send OTP";
+
       toast.error(message, { duration: 3000 });
+
       return rejectWithValue({ message });
     }
   }

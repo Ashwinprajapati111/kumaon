@@ -31,7 +31,7 @@ export default function OrdersPage() {
             try {
                 const token = localStorage.getItem("token")
                 const res = await axios.get(
-                    "http://localhost:5000/api/orders/my",
+                    `${process.env.REACT_APP_API_URL}/api/orders/my`,
                     { headers: { Authorization: `Bearer ${token}` } }
                 )
                 setOrders(res.data || [])
@@ -59,7 +59,7 @@ export default function OrdersPage() {
                             try {
                                 const token = localStorage.getItem("token");
                                 const res = await axios.delete(
-                                    `http://localhost:5000/api/orders/delete/${orderId}`,
+                                    `${process.env.REACT_APP_API_URL}/api/orders/delete/${orderId}`,
                                     { headers: { Authorization: `Bearer ${token}` } }
                                 );
                                 toast.success(res.data.message || "Order deleted");

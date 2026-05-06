@@ -4,6 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { FaTrash, FaBell, FaUserCircle } from "react-icons/fa";
 import Logo from '../Images/Logo.png';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import {
   Dialog,
@@ -21,6 +22,7 @@ import {
 const navigation = {
   pages: [
     { name: 'About Us', href: '/aboutus' },
+    { name: 'Shop Now', href: '/' },
     { name: 'Events', href: '/events-photo' },
     { name: 'Blogs', href: '/blog' },
     { name: 'Contact Us', href: '/contact' }
@@ -39,30 +41,32 @@ export default function Header() {
 
   /* ================= AUTH ================= */
   useEffect(() => {
-  const fetchUser = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const userId = localStorage.getItem("userId");
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const userId = localStorage.getItem("userId");
 
-      if (!token || !userId) return;
+        if (!token || !userId) return;
 
-      const res = await fetch(`http://localhost:5000/user/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+        const res = await fetch(`http://localhost:5000/user/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-      const data = await res.json();
+        const data = await res.json();
 
-      setUser(data);
+        setUser(data);
 
-    } catch (err) {
-      console.error("Header user fetch error:", err);
-    }
-  };
+      } catch (err) {
+        console.error("Header user fetch error:", err);
+      }
+    };
 
-  fetchUser();
-}, []);
+  
+
+    fetchUser();
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -101,7 +105,7 @@ export default function Header() {
     window.addEventListener("cartUpdated", updateCartCount);
     return () => window.removeEventListener("cartUpdated", updateCartCount);
   }, []);
-
+  const isLoggedIn = !!localStorage.getItem("token");
   return (
     <div className="bg-gray-50">
       <Toaster position="top-right" />
@@ -153,10 +157,10 @@ export default function Header() {
                   {user?.avatar ? (
                     <img src={user.avatar} className="w-8 h-8 rounded-full" />
                   ) : (
-<div className="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-semibold uppercase">
-  {(user?.name || user?.name || "").charAt(0)}
-  {(user?.lastName || "").charAt(0)}
-</div>
+                    <div className="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-semibold uppercase">
+                      {(user?.name || user?.name || "").charAt(0)}
+                      {(user?.lastName || "").charAt(0)}
+                    </div>
                   )}
                 </div>
 
@@ -266,7 +270,7 @@ export default function Header() {
             {cartItems.length > 0 && (
               <div className="p-5 border-t">
                 <Link
-                  to="/Product/cart"
+                  to={isLoggedIn ? "/Product/cart" : "/register"}
                   onClick={() => setCartOpen(false)}
                   className="block text-center bg-black text-white py-2 rounded"
                 >

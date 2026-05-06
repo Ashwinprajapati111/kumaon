@@ -8,7 +8,7 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
 
-const API = "http://localhost:5000/api/orders";
+const API = `${process.env.REACT_APP_API_URL}/api/orders`;
 
 const getAuthConfig = () => ({
   headers: {

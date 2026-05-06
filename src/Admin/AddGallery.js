@@ -21,8 +21,8 @@ export default function AdminGallery() {
   const [currentPage, setCurrentPage] = useState(1);
   const galleriesPerPage = 8;
 
-  const BASE_URL = "http://localhost:5000/api/gallery";
-  const IMG_URL = "http://localhost:5000/uploads/";
+  const BASE_URL = `${process.env.REACT_APP_API_URL}/api/gallery`;
+  const IMG_URL = `${process.env.REACT_APP_API_URL}/uploads/`;
 
   // FETCH
   const fetchGalleries = async () => {

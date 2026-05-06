@@ -27,7 +27,7 @@ export default function InstaVideoManager() {
     // ---------------- Fetch Data ----------------
     const fetchVideos = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/api/insta/all");
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/insta/all`);
             // grab the array from res.data.data
             setVideos(res.data.data.reverse());
         } catch (err) {
@@ -48,7 +48,7 @@ export default function InstaVideoManager() {
 
         try {
             await axios.post(
-                "http://localhost:5000/api/insta/create",
+                `${process.env.REACT_APP_API_URL}/api/insta/create`,
                 { videoUrl: title }, // ✅ send the correct field name
                 {
                     headers: {
@@ -82,7 +82,7 @@ export default function InstaVideoManager() {
                         onClick={async () => {
                             toast.dismiss(t.id);
                             try {
-                                await axios.delete(`http://localhost:5000/api/insta/delete/${id}`, {
+                                await axios.delete(`${process.env.REACT_APP_API_URL}/api/insta/delete/${id}`, {
                                     headers: {
                                         Authorization: `Bearer ${localStorage.getItem("token")}`, // JWT token
                                     },
@@ -115,7 +115,7 @@ export default function InstaVideoManager() {
         if (!editTitle.trim()) return toast.error("Video URL cannot be empty ❌");
         try {
             await axios.put(
-                `http://localhost:5000/api/insta/update/${editData._id}`,
+                `${process.env.REACT_APP_API_URL}/api/insta/update/${editData._id}`,
                 { videoUrl: editTitle },
                 {
                     headers: {

@@ -24,7 +24,7 @@ const Eventsphoto = () => {
   const fetchGallery = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/gallery/all"
+        `${process.env.REACT_APP_API_URL}/api/gallery/all`
       );
 
       // only needed fields
@@ -139,7 +139,7 @@ const Eventsphoto = () => {
                   onClick={() => navigate(`/photo/${item._id}`)}
                 >
                   <img
-                    src={`http://localhost:5000/file/files/${item.coverImage}`}
+                    src={`${process.env.REACT_APP_API_URL}/file/files/${item.coverImage}`}
                     className="h-40 w-full object-cover rounded-lg"
                     alt={item.title}
                   />

@@ -27,7 +27,7 @@ export default function Login() {
     dispatch(loginStart());
 
     try {
-      const res = await axios.post("http://localhost:5000/auth/login", formData);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, formData);
       const { user, token } = res.data;
 
       // ✅ Save to localStorage

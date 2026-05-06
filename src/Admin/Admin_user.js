@@ -33,7 +33,7 @@ export default function Example() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.get("http://localhost:5000/user/admins", {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/admins`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -56,7 +56,7 @@ export default function Example() {
 
     try {
       await axios.post(
-        "http://localhost:5000/user/", // fixed URL
+        `${process.env.REACT_APP_API_URL}/user/`, // fixed URL
         {
           name,
           email,
@@ -103,7 +103,7 @@ export default function Example() {
             onClick={async () => {
               try {
                 await axios.delete(
-                  `http://localhost:5000/user/${id}`,
+                  `${process.env.REACT_APP_API_URL}/user/${id}`,
                   {
                     headers: {
                       Authorization: `Bearer ${localStorage.getItem("token")}`,

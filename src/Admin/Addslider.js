@@ -49,14 +49,14 @@ export default function Example() {
         try {
             if (editId) {
                 await axios.put(
-                    `http://localhost:5000/slider/update/${editId}`,
+                    `${process.env.REACT_APP_API_URL}/slider/update/${editId}`,
                     formData
                 );
 
                 toast.success("Slider updated successfully ✏️");
                 setEditId(null);
             } else {
-                await axios.post("http://localhost:5000/slider/post", formData);
+                await axios.post(`${process.env.REACT_APP_API_URL}/slider/post`, formData);
                 toast.success("Slider added successfully 🎉");
             }
 
@@ -76,7 +76,7 @@ export default function Example() {
     // ================= FETCH =================
     const showdata = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/slider/getall");
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/slider/getall`);
             setSeData(res.data.reverse());
         } catch (err) {
             toast.error("Failed to fetch sliders ❌");
@@ -105,7 +105,7 @@ export default function Example() {
                         onClick={async () => {
                             try {
                                 await axios.delete(
-                                    `http://localhost:5000/slider/delete/${id}`
+                                    `${process.env.REACT_APP_API_URL}/slider/delete/${id}`
                                 );
 
                                 toast.success("Deleted successfully 🗑️");
@@ -129,7 +129,7 @@ export default function Example() {
     const handleEdit = (item) => {
         setEditId(item._id);
         setSliderpreview(
-            `http://localhost:5000/file/files/${item.sliderimage}`
+            `${process.env.REACT_APP_API_URL}/file/files/${item.sliderimage}`
         );
         setTab(1);
         toast("Editing slider ✏️");
@@ -249,11 +249,11 @@ export default function Example() {
                                     className="bg-white rounded-2xl shadow hover:shadow-xl transition p-3"
                                 >
                                     <img
-                                        src={`http://localhost:5000/file/files/${item.sliderimage}`}
+                                        src={`${process.env.REACT_APP_API_URL}/file/files/${item.sliderimage}`}
                                         className="h-40 w-full object-cover rounded-xl cursor-pointer"
                                         onClick={() =>
                                             setPreviewModal(
-                                                `http://localhost:5000/file/files/${item.sliderimage}`
+                                                `${process.env.REACT_APP_API_URL}/file/files/${item.sliderimage}`
                                             )
                                         }
                                     />

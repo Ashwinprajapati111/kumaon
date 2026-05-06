@@ -11,7 +11,7 @@ export default function Example() {
 
   const showdata = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/products/getall");
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/products/getall`);
       setProducts(res.data.reverse());
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -85,7 +85,7 @@ export default function Example() {
                       >
                         <div className="relative overflow-hidden bg-slate-100">
                           <img
-                            src={`http://localhost:5000/file/files/${product.productimage}`}
+                            src={`${process.env.REACT_APP_API_URL}/file/files/${product.productimage}`}
                             alt={product.name}
                             className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-110 sm:h-52"
                           />

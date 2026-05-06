@@ -52,7 +52,7 @@ export default function Example() {
     alert("Event Photo Added Successfully");
 
     // 👉 Connect backend here
-    // axios.post("http://localhost:5000/upload", formData)
+    // axios.post(`${process.env.REACT_APP_API_URL}/upload`, formData)
   };
   // content of tab 2
   const photo = Data[0].photogallery;

@@ -62,7 +62,7 @@ export default function EventGallery() {
   const removeExistingImage = async (imgName) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/gallery/delete-image/${editId}`,
+        `${process.env.REACT_APP_API_URL}/api/gallery/delete-image/${editId}`,
         { imageName: imgName }
       );
 
@@ -79,7 +79,7 @@ export default function EventGallery() {
   // ================= FETCH =================
   const fetchGallery = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/gallery/all");
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/gallery/all`);
       setGalleryData(Array.isArray(res.data) ? res.data : []);
     } catch {
       toast.error("Failed to fetch gallery ❌");
@@ -113,7 +113,7 @@ export default function EventGallery() {
         formData.append("coverImage", image);
 
         const res = await axios.post(
-          "http://localhost:5000/api/gallery/create",
+          `${process.env.REACT_APP_API_URL}/api/gallery/create`,
           formData
         );
 
@@ -131,7 +131,7 @@ export default function EventGallery() {
         }
 
         await axios.put(
-          `http://localhost:5000/api/gallery/update/${editId}`,
+          `${process.env.REACT_APP_API_URL}/api/gallery/update/${editId}`,
           formData
         );
       }
@@ -145,7 +145,7 @@ export default function EventGallery() {
         });
 
         await axios.post(
-          `http://localhost:5000/api/gallery/upload-images/${galleryId}`,
+          `${process.env.REACT_APP_API_URL}/api/gallery/upload-images/${galleryId}`,
           imgData
         );
       }
@@ -191,7 +191,7 @@ export default function EventGallery() {
           onClick={async () => {
             try {
               await axios.delete(
-                `http://localhost:5000/api/gallery/delete/${id}`
+                `${process.env.REACT_APP_API_URL}/api/gallery/delete/${id}`
               );
               toast.success("Deleted 🗑️");
               fetchGallery();
@@ -215,7 +215,7 @@ export default function EventGallery() {
     setTitle(item.title);
     setDate(item.eventDate?.split("T")[0] || "");
 
-    setPreview(`http://localhost:5000/file/files/${item.coverImage}`);
+    setPreview(`${process.env.REACT_APP_API_URL}/file/files/${item.coverImage}`);
 
     // ✅ LOAD EXISTING IMAGES
     setExistingImages(item.photos || []);
@@ -285,7 +285,7 @@ export default function EventGallery() {
                   {existingImages.map((img, i) => (
                     <div key={i} className="relative">
                       <img
-                        src={`http://localhost:5000/file/files/${img}`}
+                        src={`${process.env.REACT_APP_API_URL}/file/files/${img}`}
                         className="h-24 w-full object-cover rounded"
                       />
                       <button
@@ -329,7 +329,7 @@ export default function EventGallery() {
               <div key={item._id} className="bg-white p-3 rounded shadow">
 
                 <img
-                  src={`http://localhost:5000/file/files/${item.coverImage}`}
+                  src={`${process.env.REACT_APP_API_URL}/file/files/${item.coverImage}`}
                   className="h-32 w-full object-cover rounded"
                 />
 
@@ -343,7 +343,7 @@ export default function EventGallery() {
                   {item.photos?.map((img, i) => (
                     <img
                       key={i}
-                      src={`http://localhost:5000/file/files/${img}`}
+                      src={`${process.env.REACT_APP_API_URL}/file/files/${img}`}
                       className="h-16 w-16 object-cover rounded"
                     />
                   ))}

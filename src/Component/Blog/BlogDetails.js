@@ -19,7 +19,7 @@ export default function BlogDetails() {
 
   const getBlog = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/blog/get/${id}`);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/blog/get/${id}`);
       setBlog(res.data);
     } catch (error) {
       console.log(error);

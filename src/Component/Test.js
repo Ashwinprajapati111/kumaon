@@ -1,4 +1,4 @@
-import Back from '../Images/back.jpg'
+import Back from '../Images/imageback.jpg'
 
 const stats = [
   { name: 'Sourced from pristine Himalayan regions', value: 'Pure Origin' },
@@ -49,7 +49,7 @@ export default function Example() {
           <h2 className="text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl dark:text-white">
             From the Himalayas to You
           </h2>
-          <p className="mt-8 text-lg font-medium text-pretty text-gray-700 sm:text-xl/8 dark:text-gray-300">
+          <p className="mt-8 text-lg font-medium text-pretty text-gray-700 sm:text-xl/8 dark:text-white">
             We partner exclusively with  local communities to bring rare Himalayan wellness traditions to modern lifestyles. Every product reflects our belief that true quality comes from patience, purity and respect for nature.
           </p>
         </div>
@@ -58,7 +58,7 @@ export default function Example() {
           <dl className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((stat) => (
               <div key={stat.name} className="flex flex-col-reverse gap-1">
-                <dt className="text-base/7 text-gray-700 dark:text-gray-300">{stat.name}</dt>
+                <dt className="text-base/7 text-gray-700 dark:text-white">{stat.name}</dt>
                 <dd className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">{stat.value}</dd>
               </div>
             ))}

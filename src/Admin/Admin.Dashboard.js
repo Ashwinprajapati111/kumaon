@@ -22,7 +22,7 @@ useEffect(() => {
       setLoading(true);
 
       const res = await axios.get(
-        "http://localhost:5000/admin/stats",
+        `${process.env.REACT_APP_API_URL}/admin/stats`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

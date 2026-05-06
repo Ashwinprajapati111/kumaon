@@ -31,7 +31,7 @@ export default function Example() {
     const showdata = async () => {
         try {
             const token = localStorage.getItem("token");
-            const res = await axios.get("http://localhost:5000/user/users", {
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/users`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setSeData(res.data.reverse());
@@ -53,7 +53,7 @@ export default function Example() {
                     <button
                         onClick={async () => {
                             try {
-                                await axios.delete(`http://localhost:5000/user/${id}`, {
+                                await axios.delete(`${process.env.REACT_APP_API_URL}/user/${id}`, {
                                     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
                                 });
                                 toast.dismiss(t.id);

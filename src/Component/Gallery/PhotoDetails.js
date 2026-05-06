@@ -15,7 +15,7 @@ function GalleryPage() {
   useEffect(() => {
     const fetchGallery = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/gallery/${id}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/gallery/${id}`);
         const data = await res.json();
         setGallery(data);
       } catch (err) {
@@ -77,7 +77,7 @@ function GalleryPage() {
                   className="cursor-pointer overflow-hidden rounded-xl shadow-lg"
                 >
                   <img
-                    src={`http://localhost:5000/file/files/${photo}`}
+                    src={`${process.env.REACT_APP_API_URL}/file/files/${photo}`}
                     alt="Gallery"
                     className="w-full h-64 object-cover hover:scale-110 transition duration-300"
                   />
@@ -109,7 +109,7 @@ function GalleryPage() {
 
                 {/* Image */}
                 <img
-                  src={`http://localhost:5000/file/files/${gallery.photos[currentIndex]}`}
+                  src={`${process.env.REACT_APP_API_URL}/file/files/${gallery.photos[currentIndex]}`}
                   alt="Full"
                   className="max-h-[80vh] max-w-full object-contain rounded-lg"
                 />
